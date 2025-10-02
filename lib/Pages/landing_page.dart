@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:portfolio_web/Pages/project_page.dart';
 import 'package:portfolio_web/Pages/tech_stack_page.dart';
+import 'package:portfolio_web/Utility%20Funcation/custom_button.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../Utility Funcation/social_icons.dart';
 import '../app_colors.dart';
@@ -13,6 +15,8 @@ class PortfolioPage extends StatelessWidget {
 
   static const desktopBreakpoint = 1000.0;
   static const tabletBreakpoint = 700.0;
+  static const mobileBreakpoint = 500.0;
+  static final scrollController = ScrollController();
 
   // Keys for sections
   static final aboutKey = GlobalKey();
@@ -21,7 +25,6 @@ class PortfolioPage extends StatelessWidget {
   static final experienceKey = GlobalKey();
   static final contactKey = GlobalKey();
 
-  static final scrollController = ScrollController();
 
   static void scrollToSection(GlobalKey key) {
     final context = key.currentContext;
@@ -36,15 +39,69 @@ class PortfolioPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    debugPrint("Font Family: ${const TextStyle(fontFamily: 'TestFont').debugLabel}");
+    final items = {
+      'About': aboutKey,
+      'Tech': techKey,
+      'Projects': projectsKey,
+      'Experience': experienceKey,
+      'Contact': contactKey,
+    };
     return Scaffold(
       backgroundColor: AppColors.background1,
+      endDrawer: Drawer(
+        backgroundColor: Colors.black87,
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            const DrawerHeader(
+              decoration: BoxDecoration(color: Colors.black54),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  CircleAvatar(
+                    radius: 30,
+                    backgroundImage: AssetImage("res/profile.jpeg"),
+                  ),
+                  SizedBox(height: 12),
+                  Text(
+                    'Talib Jameel',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    'Software Engineer',
+                    style: TextStyle(
+                      color: AppColors.white,
+                      fontSize: 16,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            for (final entry in items.entries)
+              ListTile(
+                title: Text(
+                  entry.key,
+                  style: const TextStyle(color: Colors.white70),
+                ),
+                onTap: () {
+                  Navigator.pop(context);
+                  scrollToSection(entry.value);
+                },
+              ),
+          ],
+        ),
+      ),
       body: SafeArea(
         child: LayoutBuilder(
           builder: (context, constraints) {
             final width = constraints.maxWidth;
             final isDesktop = width >= desktopBreakpoint;
-            final isTablet =
-                width >= tabletBreakpoint && width < desktopBreakpoint;
+            final isTablet = width >= tabletBreakpoint && width < desktopBreakpoint;
 
             return SingleChildScrollView(
               controller: PortfolioPage.scrollController,
@@ -53,12 +110,26 @@ class PortfolioPage extends StatelessWidget {
                 children: [
                   // NAV / HEADER
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 38, vertical: 18,),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: isDesktop
+                          ? 38
+                          : isTablet
+                          ? 20
+                          : 6, // mobile
+                      vertical: isDesktop
+                          ? 18
+                          : isTablet
+                          ? 12
+                          : 6, // mobile
+                    ),
                     child: Row(
                       children: [
                         const _Logo(),
                         const Spacer(),
-                        if (isDesktop) const _TopNav() else _MobileView(),
+                        if (isDesktop)
+                          const _TopNav()
+                        else
+                          _MobileView(),
                       ],
                     ),
                   ),
@@ -67,8 +138,16 @@ class PortfolioPage extends StatelessWidget {
                   Container(
                     color: AppColors.background1,
                     padding: EdgeInsets.symmetric(
-                      horizontal: isDesktop ? 80 : 24,
-                      vertical: 40,
+                      horizontal: isDesktop
+                          ? 80
+                          : isTablet
+                          ? 40
+                          : 24, // mobile
+                      vertical: isDesktop
+                          ? 60
+                          : isTablet
+                          ? 50
+                          : 10, // mobile
                     ),
                     constraints: const BoxConstraints(minHeight: 380),
                     child: isDesktop
@@ -79,10 +158,7 @@ class PortfolioPage extends StatelessWidget {
                   // About
                   Container(
                     key: PortfolioPage.aboutKey,
-                    padding: EdgeInsets.symmetric(
-                      horizontal: isDesktop ? 80 : 24,
-                      vertical: 40,
-                    ),
+                    padding: EdgeInsets.symmetric(horizontal: isDesktop ? 80 : 24, vertical: 40,),
                     color: AppColors.background2,
                     child: ConstrainedBox(
                       constraints: const BoxConstraints(maxWidth: 1100),
@@ -103,25 +179,20 @@ class PortfolioPage extends StatelessWidget {
                   // Tech Stack
                   Container(
                     key: PortfolioPage.techKey,
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 24,
-                      vertical: 48,
-                    ),
+                    padding: EdgeInsets.symmetric(horizontal: isDesktop ? 80 : 24, vertical: 40,),
                     color: AppColors.background1,
-                    child: Center(
-                      child: ConstrainedBox(
-                        constraints: const BoxConstraints(maxWidth: 1100),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const [
-                            SectionTitle(
-                              title: 'Tech Stack',
-                              color: Colors.white,
-                            ),
-                            SizedBox(height: 18),
-                            TechStackSection(),
-                          ],
-                        ),
+                    child: ConstrainedBox(
+                      constraints: const BoxConstraints(maxWidth: 1100),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: const [
+                          SectionTitle(
+                            title: 'Tech Stack',
+                            color: AppColors.green,
+                          ),
+                          SizedBox(height: 18),
+                          TechStackSection(),
+                        ],
                       ),
                     ),
                   ),
@@ -129,25 +200,28 @@ class PortfolioPage extends StatelessWidget {
                   // Projects
                   Container(
                     key: PortfolioPage.projectsKey,
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 24,
-                      vertical: 48,
-                    ),
+                    padding: EdgeInsets.symmetric(horizontal: isDesktop ? 80 : 24, vertical: 40,),
                     color: AppColors.background2,
-                    child: Center(
-                      child: ConstrainedBox(
-                        constraints: const BoxConstraints(maxWidth: 1100),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const [
-                            SectionTitle(
-                              title: 'Projects',
-                              color: Colors.white,
+                    child: ConstrainedBox(
+                      constraints: const BoxConstraints(maxWidth: 1100),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: const [
+                          SectionTitle(
+                            title: 'Projects',
+                            color: AppColors.green,
+                          ),
+                          SizedBox(height: 5),
+                          Text(
+                            'Stuff I loved working with',
+                            style: TextStyle(
+                              color: Colors.white70,
+                              fontSize: 12,
                             ),
-                            SizedBox(height: 12),
-                            ProjectsRow(),
-                          ],
-                        ),
+                          ),
+                          SizedBox(height: 12),
+                          ProjectsRow(),
+                        ],
                       ),
                     ),
                   ),
@@ -262,11 +336,10 @@ class _Logo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text(
-        '<Talib>',
-        style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-      ),
+    return  SvgPicture.asset(
+      width: 300,
+      height: 100,
+    "res/logo.svg",
     );
   }
 }
@@ -316,9 +389,13 @@ class _TopNav extends StatelessWidget {
 class _MobileView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return IconButton(
-      onPressed: () {},
-      icon: const Icon(Icons.menu, color: Colors.white),
+    return Builder(
+      builder: (context) => IconButton(
+        icon: const Icon(Icons.menu, color: Colors.white),
+        onPressed: () {
+          Scaffold.of(context).openEndDrawer();
+        },
+      ),
     );
   }
 }
@@ -330,36 +407,233 @@ class _HeroTabletView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    /// Tablet view
+    if (isTablet) {
+      return Row(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          Expanded(
+            flex: 1,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                /// brand tag
+                CustomButton(
+                    text: "Software Engineer",
+                    icon: false,
+                    onPressed: (){
+                      PortfolioPage.scrollToSection(PortfolioPage.aboutKey);
+                    },
+                ),
+                const SizedBox(height: 8),
+
+                /// brand name
+                Text(
+                  "Talib\nJameel",
+                  style: GoogleFonts.poppins(
+                    fontSize: 36,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+                const SizedBox(height: 5),
+
+                /// job role
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Icon(Icons.arrow_right, color: AppColors.green, size: 45),
+                    const SizedBox(width: 8),
+                    Flexible(
+                      child: FittedBox(
+                        fit: BoxFit.scaleDown,
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          'Flutter Developer',
+                          style: GoogleFonts.poppins(
+                            fontSize: 16,
+                            color: AppColors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 10),
+
+                /// social icons
+                SocialIconsRow(),
+                const SizedBox(height: 30),
+
+                /// Let's chat
+                TextButton(
+                  onPressed: () {
+                    PortfolioPage.scrollToSection(PortfolioPage.contactKey);
+                  },
+                  style: ButtonStyle(
+                    overlayColor: WidgetStateProperty.all(
+                      AppColors.green.withValues(alpha: .2),
+                    ),
+                  ),
+                  child: Text(
+                    "Let's chat!".toUpperCase(),
+                    style: GoogleFonts.poppins(
+                      fontSize: 12,
+                      color: AppColors.green,
+                      fontWeight: FontWeight.bold,
+                      decoration: TextDecoration.underline,
+                      decorationColor: AppColors.green,
+                      decorationThickness: 1,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 40),
+
+                /// Insight
+                Wrap(
+                  spacing: 20,
+                  runSpacing: 15,
+                  children: [
+                    _buildInsightItem('2', 'Years\nExperience'),
+                    _buildInsightItem('15', 'Projects\nCompleted'),
+                    _buildInsightItem('110k', 'Content\nReached & views'),
+                  ],
+                ),
+              ],
+            ),
+          ),
+
+          const SizedBox(width: 20),
+
+          // RIGHT SIDE: Profile Image
+          Expanded(
+            flex: 1,
+            child:  Stack(
+              alignment: Alignment.center,
+              children: [
+                /// background circle
+                Container(
+                  width: 450,
+                  height: 430,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: AppColors.background2,
+                  ),
+                ),
+
+                /// profile image
+                Container(
+                  width: 540,
+                  height: 380,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(50),
+                      bottomRight: Radius.circular(50),
+                    ),
+                  ),
+                  child: Transform.scale(
+                    scale: 1.5,
+                    child: Image.asset(
+                      'res/profile_image.png',
+                      fit: BoxFit.contain,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      );
+    }
+
+    // Mobile view: Column, image centered below text
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          "Hello! I'm Talib",
-          style: GoogleFonts.poppins(
-            fontSize: isTablet ? 32 : 28,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
+        /// brand tag
+        MaterialButton(
+          onPressed: () {},
+          color: AppColors.green,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(5),
+          ),
+          child: const Text(
+            'Software Engineer',
+            style: TextStyle(color: AppColors.background1),
           ),
         ),
         const SizedBox(height: 8),
+
+        /// brand name
         Text(
-          'A software engineer turned product engineer',
-          style: GoogleFonts.poppins(fontSize: 16, color: Colors.white70),
+          "Talib\nJameel",
+          style: GoogleFonts.poppins(
+            fontSize: 36,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+          textAlign: TextAlign.center,
         ),
-        const SizedBox(height: 12),
-        Text(
-          'Software engineer with a mind for building products and systems who has developed solutions, MVPs, products and systems for more than 6 years.',
-          style: const TextStyle(
-            fontSize: 15,
-            height: 1.5,
-            color: Colors.white70,
+        const SizedBox(height: 5),
+
+        /// job role
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Icon(Icons.arrow_right, color: AppColors.green, size: 45),
+            const SizedBox(width: 8),
+            Flexible(
+              child: FittedBox(
+                fit: BoxFit.scaleDown,
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'Flutter Developer',
+                  style: GoogleFonts.poppins(
+                    fontSize: 16,
+                    color: AppColors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 10),
+
+        /// social icons
+        SocialIconsRow(),
+        const SizedBox(height: 30),
+
+        /// Let's chat
+        TextButton(
+          onPressed: () {
+            PortfolioPage.scrollToSection(PortfolioPage.contactKey);
+          },
+          style: ButtonStyle(
+            overlayColor: WidgetStateProperty.all(
+              AppColors.green.withValues(alpha: 0.2),
+            ),
+          ),
+          child: Text(
+            "Let's chat!".toUpperCase(),
+            style: GoogleFonts.poppins(
+              fontSize: 12,
+              color: AppColors.green,
+              fontWeight: FontWeight.bold,
+              decoration: TextDecoration.underline,
+              decorationColor: AppColors.green,
+              decorationThickness: 1,
+            ),
           ),
         ),
-        const SizedBox(height: 20),
+        const SizedBox(height: 40),
+
+        /// Mobile profile image
         Center(
           child: Container(
-            width: isTablet ? 180 : 140,
-            height: isTablet ? 180 : 140,
+            width: 200,
+            height: 200,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12),
               boxShadow: const [
@@ -372,7 +646,7 @@ class _HeroTabletView extends StatelessWidget {
             ),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(12),
-              child: Image.asset('assets/profile.jpg', fit: BoxFit.cover),
+              child: Image.asset('res/profile.jpeg', fit: BoxFit.cover),
             ),
           ),
         ),
@@ -393,14 +667,12 @@ class _HeroDesktopView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               /// Main title
-              MaterialButton(
-                onPressed: () {},
-                color: AppColors.green,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: const Text('Software Engineer'),
-              ),
+              CustomButton(
+                onPressed: (){
+                  PortfolioPage.scrollToSection(PortfolioPage.aboutKey);
+                },
+                  text: "Software Engineer",
+                  icon: false),
               const SizedBox(height: 8),
 
               /// Name
@@ -415,32 +687,36 @@ class _HeroDesktopView extends StatelessWidget {
               const SizedBox(height: 5),
 
               /// Job Role
-              Padding(
-                padding: const EdgeInsets.only(left: 20),
-                child: Column(
-                  spacing: 10,
-                  children: [
-                    Row(
-                      children: [
-                        Icon(Icons.arrow_right, color: AppColors.green, size: 45),
-                        Text(
-                          'Flutter Developer',
-                          style: GoogleFonts.poppins(
-                            fontSize: 16,
-                            color: AppColors.white,
-                            fontWeight: FontWeight.bold,
-                            decorationColor: AppColors.green,
-                            decorationThickness: 1,
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Icon(Icons.arrow_right, color: AppColors.green, size: 45),
+                      const SizedBox(width: 8),
+                      Flexible(
+                        child: FittedBox(
+                          fit: BoxFit.scaleDown,
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            'Flutter Developer',
+                            style: GoogleFonts.poppins(
+                              fontSize: 16,
+                              color: AppColors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
-                      ],
-                    ),
-                    Padding(
-                        padding: const EdgeInsets.only(left: 20),
-                        child: SocialIconsRow()
-                    ),
-                  ],
-                ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 10),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 35),
+                    child: SocialIconsRow(),
+                  ),
+                ],
               ),
               const SizedBox(height: 60),
 
@@ -469,77 +745,19 @@ class _HeroDesktopView extends StatelessWidget {
               const SizedBox(height: 60),
 
               /// Insight
-              Row(
-                spacing: 30,
+              Wrap(
+                spacing: 20,
+                runSpacing: 15,
                 children: [
-                  /// Years of experience
-                  Row(
-                    spacing: 5,
-                    children: [
-                      Text(
-                        '2',
-                        style: GoogleFonts.poppins(
-                          fontSize: 40,
-                          color: AppColors.white,
-                        ),
-                      ),
-                      Text(
-                        'Years\nExperience',
-                        style: GoogleFonts.poppins(
-                          fontSize: 15,
-                          color: Colors.grey,
-                        ),
-                      ),
-                    ],
-                  ),
-
-                  /// Project Completed
-                  Row(
-                    spacing: 5,
-                    children: [
-                      Text(
-                        '15',
-                        style: GoogleFonts.poppins(
-                          fontSize: 40,
-                          color: AppColors.white,
-                        ),
-                      ),
-                      Text(
-                        'Projects\nCompleted',
-                        style: GoogleFonts.poppins(
-                          fontSize: 15,
-                          color: Colors.grey,
-                        ),
-                      ),
-                    ],
-                  ),
-
-                  /// content reached & views
-                  Row(
-                    spacing: 5,
-                    children: [
-                      Text(
-                        '110k',
-                        style: GoogleFonts.poppins(
-                          fontSize: 40,
-                          color: AppColors.white,
-                        ),
-                      ),
-                      Text(
-                        'Content \n Reached & views',
-                        style: GoogleFonts.poppins(
-                          fontSize: 15,
-                          color: Colors.grey,
-                        ),
-                      ),
-                    ],
-                  ),
+                  _buildInsightItem('2', 'Years\nExperience'),
+                  _buildInsightItem('15', 'Projects\nCompleted'),
+                  _buildInsightItem('110k', 'Content\nReached & views'),
                 ],
               ),
             ],
           ),
         ),
-        const SizedBox(width: 36),
+        const SizedBox(width: 26),
 
         /// Profile Image with background circle
         Column(
@@ -549,7 +767,7 @@ class _HeroDesktopView extends StatelessWidget {
               children: [
                 /// background circle
                 Container(
-                  width: 460,
+                  width: 450,
                   height: 430,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
@@ -559,7 +777,7 @@ class _HeroDesktopView extends StatelessWidget {
 
                 /// profile image
                 Container(
-                  width: 560,
+                  width: 540,
                   height: 380,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.only(
@@ -584,6 +802,34 @@ class _HeroDesktopView extends StatelessWidget {
   }
 }
 
+Widget _buildInsightItem(String value, String label) {
+  return Row(
+    mainAxisSize: MainAxisSize.min,
+    crossAxisAlignment: CrossAxisAlignment.center,
+    children: [
+      Text(
+        value,
+        style: GoogleFonts.poppins(
+          fontSize: 25,
+          color: AppColors.white,
+        ),
+      ),
+      const SizedBox(width: 5),
+      FittedBox(
+        fit: BoxFit.scaleDown,
+        alignment: Alignment.topLeft,
+        child: Text(
+          label,
+          style: GoogleFonts.poppins(
+            fontSize: 10,
+            color: Colors.grey,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+    ],
+  );
+}
 
 
 // ======================== Social Icons ========================
@@ -622,7 +868,7 @@ class SectionTitle extends StatelessWidget {
     return Text(
       title,
       style: GoogleFonts.poppins(
-        fontSize: 22,
+        fontSize: 28,
         fontWeight: FontWeight.w600,
         color: color,
       ),

@@ -1,50 +1,49 @@
 // Helper function to map the technology name to your SVG asset path.
+
 String getIconPath(String title) {
-  // NOTE: REPLACE THESE PLACEHOLDERS with your ACTUAL ASSET PATHS
   switch (title) {
     case 'Flutter':
-      return 'assets/icons/flutter.svg';
+      return 'icons/flutter.svg';
     case 'Dart':
-      return 'assets/icons/dart.svg';
-    case 'HTML 5':
-      return 'assets/icons/html5.svg';
-    case 'CSS 3':
-      return 'assets/icons/css3.svg';
-    case 'Bootstrap':
-      return 'assets/icons/bootstrap.svg';
-    case 'Javascript':
-      return 'assets/icons/javascript.svg';
-    case 'React':
-      return 'assets/icons/react.svg';
-    case 'Flask Restful':
-      return 'assets/icons/flask.svg';
+      return 'icons/dart.svg';
+    case 'Android':
+      return 'icons/android.svg';
+    case 'iOS':
+      return 'icons/apple.svg';
+    case 'Flutter Web':
+      return 'icons/flutter_web.svg';
     case 'Node.js':
-      return 'assets/icons/nodejs.svg';
+      return 'icons/node.svg';
     case 'Express.js':
-      return 'assets/icons/express.svg';
+      return 'icons/express.svg';
     case 'REST APIs':
-      return 'assets/icons/api.svg';
-    case 'Dart Frog':
-      return 'assets/icons/dart_frog.svg';
+      return 'icons/api.svg';
+    case 'Postman':
+      return 'icons/postman.svg';
     case 'Firebase':
-      return 'assets/icons/firebase.svg';
-    case 'MongoDB':
-      return 'assets/icons/mongodb.svg';
-    case 'Postgres SQL':
-      return 'assets/icons/postgresql.svg';
-    case 'GitHub':
-      return 'assets/icons/github.svg';
+      return 'icons/firebase.svg';
+    case 'PostgresSQL':
+      return 'icons/sql.svg';
+    case 'AWS S3':
+      return 'icons/AWS_S3.svg';
     case 'Jira':
-      return 'assets/icons/jira.svg';
-    case 'Notion':
-      return 'assets/icons/notion.svg';
-    case 'Figma':
-      return 'assets/icons/figma.svg';
-    case 'Adobe XD':
-      return 'assets/icons/adobexd.svg';
+      return 'icons/jira.svg';
+    case 'ClickUp':
+      return 'icons/clickUp.svg';
+    case 'Windsurf':
+      return 'icons/windsurf.svg';
+    case 'Provider':
+      return 'icons/dart.svg';
+    case 'RiverPod':
+      return 'icons/flutter.svg';
+    case 'Responsive Design':
+      return 'icons/responsive_design.svg';
+    case 'WordPress':
+      return 'icons/wordpress.svg';
+    case 'Github':
+      return 'icons/github.svg';
     default:
-    // A fallback path is necessary
-      return 'assets/icons/default.svg';
+      return 'icons/flutter.svg';
   }
 }
 
