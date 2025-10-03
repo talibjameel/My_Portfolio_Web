@@ -10,59 +10,56 @@ class TechStackSection extends StatelessWidget {
   // Data structured by the categories
   final List<TechCategoryModel> techStackData = const [
     TechCategoryModel(
-      title: 'Mobile development',
-      skills: ['Flutter', 'Dart'],
+      title: 'Mobile Development',
+      skills: ['Flutter', 'Dart', 'Android', 'iOS',],
     ),
     TechCategoryModel(
-      title: 'Web development',
-      skills: ['HTML 5', 'CSS 3', 'Bootstrap', 'Javascript', 'React'],
+      title: 'Web Development',
+      skills: ['Flutter Web', 'WordPress'],
     ),
     TechCategoryModel(
-      title: 'Server side',
-      skills: ['Flask Restful', 'Node.js', 'Express.js', 'REST APIs', 'Dart Frog'],
+      title: 'Backend & APIs',
+      skills: ['Node.js', 'Express.js','REST APIs', 'Postman'],
     ),
     TechCategoryModel(
-      title: 'Databases',
-      skills: ['Firebase', 'MongoDB', 'Postgres SQL'],
+      title: 'Databases & Cloud',
+      skills: ['Firebase', 'PostgresSQL', 'AWS S3', ],
     ),
     TechCategoryModel(
-      title: 'Version controlling & management',
-      skills: ['GitHub', 'Jira', 'Notion'],
+      title: 'State Management ',
+      skills: ['Provider', 'RiverPod', 'Responsive Design'],
     ),
     TechCategoryModel(
-      title: 'UI/UX Design',
-      skills: ['Figma', 'Adobe XD'],
+      title: 'Tools',
+      skills: [ 'Github','Jira', 'ClickUp', 'windsurf'],
     ),
   ];
 
+
   @override
   Widget build(BuildContext context) {
-    // Color Definitions (Use your AppColors if defined, or these defaults)
     const Color darkBackground = AppColors.background1;
 
     return Container(
       color: darkBackground,
-      padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 40),
       child: LayoutBuilder(
         builder: (context, constraints) {
           final bool isWideScreen = constraints.maxWidth > 900;
 
-          // Widget containing all the text and tag content
+
           Widget techContent = Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Description
               const Padding(
                 padding: EdgeInsets.only(bottom: 24.0),
                 child: Text(
-                  'Change is inevitable, so I keep on exploring new technology, learn it in a minimal possible way and then build something out of it to see how well i did :)',
+                  'Change is inevitable, so I keep on exploring new technology, learn it in a minimal possible way and then build something out of it to see how well i did.',
                   style: TextStyle(
                     fontSize: 16,
                     color: Colors.white70,
                   ),
                 ),
               ),
-              // Categories
               ...techStackData.map((category) => TechCategory(
                 title: category.title,
                 skills: category.skills,
@@ -71,7 +68,6 @@ class TechStackSection extends StatelessWidget {
           );
 
           if (isWideScreen) {
-            // Side-by-side layout for wide screens
             return Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -93,7 +89,6 @@ class TechStackSection extends StatelessWidget {
               ],
             );
           } else {
-            // Stacked layout for narrow screens
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -135,14 +130,13 @@ class TechCategory extends StatelessWidget {
             child: Text(
               title,
               style: const TextStyle(
-                fontSize: 18,
+                fontSize: 14,
                 fontWeight: FontWeight.w500,
-                color: Colors.white,
+                color: Colors.white70,
               ),
             ),
           ),
 
-          // Skills in a Wrap layout (tags)
           Wrap(
             spacing: 12.0,
             runSpacing: 12.0,
@@ -179,45 +173,43 @@ class _TechCardState extends State<_TechCard> {
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
         decoration: BoxDecoration(
-          // Green fill color for both states, slightly darker on hover
-          color: hover ? primaryGreen.withValues(alpha: 0.8) : primaryGreen,
-          borderRadius: BorderRadius.circular(8),
+          color: hover ? AppColors.background2 : primaryGreen,
+          borderRadius: BorderRadius.circular(6),
           boxShadow: hover
               ? [
             BoxShadow(
-              blurRadius: 8,
-              color: primaryGreen.withValues(alpha: 0.4),
-              offset: const Offset(0, 2),
+              blurRadius: 16, // Thicker glow
+              spreadRadius: 3,
+              color: primaryGreen.withValues(alpha: 0.6),
+              offset: const Offset(0, 4),
             ),
           ]
               : [],
         ),
-        // Used Row to align Icon and Text
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
         child: Row(
-          mainAxisSize: MainAxisSize.min, // Essential for Wrap layout
+          mainAxisSize: MainAxisSize.min,
           children: [
-            // SVG Icon
             SizedBox(
-              width: 16, // Size of the icon
-              height: 16,
+              width: 14,
+              height: 14,
               child: SvgPicture.asset(
                 svgAssetPath,
-                colorFilter: const ColorFilter.mode(
-                  darkBackground, // Dark tint for the icon
+                colorFilter: ColorFilter.mode(
+                  hover ? primaryGreen : darkBackground,
                   BlendMode.srcIn,
                 ),
                 semanticsLabel: '${widget.title} Icon',
               ),
             ),
-            const SizedBox(width: 8), // Spacing between icon and text
-            // Text
+            const SizedBox(width: 6),
+
             Text(
               widget.title,
-              style: const TextStyle(
+              style: TextStyle(
                 fontWeight: FontWeight.w600,
-                fontSize: 14,
-                color: darkBackground, // Dark text color
+                fontSize: 12, // Smaller font
+                color: hover ? primaryGreen : darkBackground, // Green on hover
               ),
             ),
           ],

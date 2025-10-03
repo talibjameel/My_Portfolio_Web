@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
+import '../app_colors.dart';
 
 class ProjectsRow extends StatelessWidget {
   const ProjectsRow({super.key});
@@ -9,101 +11,188 @@ class ProjectsRow extends StatelessWidget {
   Widget build(BuildContext context) {
     final projects = [
       {
-        'title': 'Igloo',
-        'desc': 'Social Media App',
-        'link': 'https://github.com/',
+        'title': 'Badr',
+        'image': 'res/quran.png',
+        'link': 'https://github.com/talibjameel/Badr',
       },
       {
-        'title': 'Enfin_Libra',
-        'desc': 'Fitness / Activity Tracking',
-        'link': 'https://github.com/',
+        'title': 'ScanText-Ai',
+        'image': 'res/quran.png',
+        'link': 'https://github.com/talibjameel/ScanText-Ai',
       },
       {
         'title': 'Kanz',
-        'desc': 'E-Commerce App',
-        'link': 'https://github.com/',
+        'image': 'res/quran.png',
+        'link': 'https://github.com/talibjameel/Kanz_loan_application',
+      },
+      {
+        'title': 'Igloo',
+        'image': 'res/quran.png',
+        'link': 'https://github.com/talibjameel/igloo-app',
+      },
+      {
+        'title': 'Naqdi',
+        'image': 'res/quran.png',
+        'link': 'https://github.com/talibjameel/Naqdi',
+      },
+      {
+        'title': 'Enfin_Libra',
+        'image': 'res/quran.png',
+        'link': 'https://github.com/talibjameel/Enfin_Libra',
+      },
+      {
+        'title': 'GemStore',
+        'image': 'res/quran.png',
+        'link': 'https://github.com/talibjameel/GemStore',
       },
     ];
 
     return LayoutBuilder(
       builder: (context, constraints) {
-        final width = constraints.maxWidth;
-        final isRow = width > 800;
-        return isRow
-            ? Row(
-          children: projects
-              .map(
-                (p) => Expanded(
-              child: _ProjectCard(
-                title: p['title']!,
-                desc: p['desc']!,
-                link: p['link']!,
-              ),
-            ),
-          )
-              .toList(),
-        )
-            : Column(
-          children: projects
-              .map(
-                (p) => Padding(
-              padding: const EdgeInsets.only(bottom: 12),
-              child: _ProjectCard(
-                title: p['title']!,
-                desc: p['desc']!,
-                link: p['link']!,
-              ),
-            ),
-          )
-              .toList(),
+        int crossAxisCount;
+
+        if (constraints.maxWidth >= 1000) {
+          crossAxisCount = 3;
+        } else if (constraints.maxWidth >= 600) {
+          crossAxisCount = 2; // Tablet
+        } else {
+          crossAxisCount = 1; // Mobile
+        }
+
+        return GridView.builder(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          padding: const EdgeInsets.all(12),
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: crossAxisCount,
+            crossAxisSpacing: 16,
+            mainAxisSpacing: 16,
+            childAspectRatio: 1, // more square-like
+          ),
+          itemCount: projects.length,
+          itemBuilder: (context, index) {
+            final p = projects[index];
+            return _ProjectCard(
+              title: p['title']!,
+              image: p['image']!,
+              link: p['link']!,
+            );
+          },
         );
       },
     );
   }
 }
-class _ProjectCard extends StatelessWidget {
+
+class _ProjectCard extends StatefulWidget {
   final String title;
-  final String desc;
+  final String image;
   final String link;
+
   const _ProjectCard({
     required this.title,
-    required this.desc,
+    required this.image,
     required this.link,
   });
 
   @override
+  State<_ProjectCard> createState() => _ProjectCardState();
+}
+class _ProjectCardState extends State<_ProjectCard> {
+  bool hover = false;
+
+  static const Color primaryGreen = AppColors.green;
+
+  @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 2,
-      color: const Color(0xFF0B1324),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      child: Padding(
-        padding: const EdgeInsets.all(18.0),
+    return MouseRegion(
+      onEnter: (_) => setState(() => hover = true),
+      onExit: (_) => setState(() => hover = false),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
+        decoration: BoxDecoration(
+          color: AppColors.background1,
+          borderRadius: BorderRadius.circular(12),
+          boxShadow: hover
+              ? [
+            BoxShadow(
+              blurRadius: 18,
+              spreadRadius: 4,
+              color: primaryGreen.withValues(alpha: 0.6),
+              offset: const Offset(0, 4),
+            ),
+          ]
+              : [
+            BoxShadow(
+              blurRadius: 4,
+              spreadRadius: 1,
+              color: Colors.black.withValues(alpha: 0.4),
+              offset: const Offset(0, 2),
+            ),
+          ],
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              title,
-              style: GoogleFonts.poppins(
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
-                color: Colors.white,
+            // Project Image
+            ClipRRect(
+              borderRadius: const BorderRadius.vertical(top: Radius.circular(12)),
+              child: Image.asset(
+                widget.image,
+                height: 310,
+                width: double.infinity,
+                fit: BoxFit.cover,
               ),
             ),
-            const SizedBox(height: 8),
-            Text(
-              desc,
-              style: const TextStyle(height: 1.4, color: Colors.white70),
+            const SizedBox(height: 12),
+
+            // Project Title
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12.0),
+              child: Text(
+                widget.title,
+                style: GoogleFonts.poppins(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                  color: Colors.white,
+                ),
+              ),
             ),
             const SizedBox(height: 12),
-            TextButton(
-              onPressed: () async {
-                if (await canLaunchUrl(Uri.parse(link))) {
-                  launchUrl(Uri.parse(link));
-                }
-              },
-              child: const Text('See More'),
-            ),
+
+            // "See More" button
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12.0,),
+              child: MaterialButton(
+                onPressed: () async {
+                  final uri = Uri.parse(widget.link);
+                  if (await canLaunchUrl(uri)) {
+                    await launchUrl(
+                      uri,
+                      mode: LaunchMode.externalApplication,
+                    );
+                  } else {
+                    debugPrint("Could not launch ${widget.link}");
+                  }
+                },
+                color: AppColors.background2,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    SvgPicture.asset(
+                      'icons/github.svg',
+                      height: 20,
+                      width: 20,
+                    ),
+                    const SizedBox(width: 8),
+                    const Text('GitHub'),
+                  ],
+                ),
+              ),
+            )
           ],
         ),
       ),
