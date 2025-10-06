@@ -54,9 +54,9 @@ class ProjectsRow extends StatelessWidget {
         if (constraints.maxWidth >= 1000) {
           crossAxisCount = 3;
         } else if (constraints.maxWidth >= 600) {
-          crossAxisCount = 2; // Tablet
+          crossAxisCount = 2;
         } else {
-          crossAxisCount = 1; // Mobile
+          crossAxisCount = 1;
         }
 
         return GridView.builder(
@@ -67,7 +67,7 @@ class ProjectsRow extends StatelessWidget {
             crossAxisCount: crossAxisCount,
             crossAxisSpacing: 16,
             mainAxisSpacing: 16,
-            childAspectRatio: 1, // more square-like
+            childAspectRatio: 1,
           ),
           itemCount: projects.length,
           itemBuilder: (context, index) {
@@ -139,7 +139,7 @@ class _ProjectCardState extends State<_ProjectCard> {
               borderRadius: const BorderRadius.vertical(top: Radius.circular(12)),
               child: Image.asset(
                 widget.image,
-                height: 310,
+                height: 250,
                 width: double.infinity,
                 fit: BoxFit.cover,
               ),
