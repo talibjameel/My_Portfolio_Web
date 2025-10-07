@@ -4,10 +4,10 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:portfolio_web/Pages/project_page.dart';
 import 'package:portfolio_web/Pages/tech_stack_page.dart';
 import 'package:portfolio_web/Utility%20Funcation/custom_button.dart';
-import 'package:url_launcher/url_launcher.dart';
 import '../Utility Funcation/social_icons.dart';
 import '../app_colors.dart';
 import 'about.dart';
+import 'contact_page.dart';
 import 'exprience_page.dart';
 
 class PortfolioPage extends StatelessWidget {
@@ -229,90 +229,89 @@ class PortfolioPage extends StatelessWidget {
                   // Experience Timeline
                   Container(
                     key: PortfolioPage.experienceKey,
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 24,
-                      vertical: 48,
-                    ),
+                    padding: EdgeInsets.symmetric(horizontal: isDesktop ? 80 : 24, vertical: 40,),
                     color: AppColors.background1,
-                    child: Center(
-                      child: ConstrainedBox(
-                        constraints: const BoxConstraints(maxWidth: 1100),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const [
-                            SectionTitle(
-                              title: 'Experience',
-                              color: Colors.white,
+                    child: ConstrainedBox(
+                      constraints: const BoxConstraints(maxWidth: 1100),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children:  [
+                          SectionTitle(
+                            title: 'Experience',
+                            color: AppColors.green,
+                          ),
+                          SizedBox(height: 5),
+                          Text(
+                            "Reflection of what I've been doing so far, so long.",
+                            style: TextStyle(
+                              color: Colors.white70,
+                              fontSize: 12,
                             ),
-                            SizedBox(height: 24),
-                            ExperienceTimeline(),
-                          ],
-                        ),
+                          ),
+                          SizedBox(height: 16),
+                          ExperienceTimeline(),
+                        ],
                       ),
                     ),
                   ),
 
-                  // Contact / Footer
+                  // Contact
                   Container(
                     key: PortfolioPage.contactKey,
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 24,
-                      vertical: 40,
-                    ),
+                    padding: EdgeInsets.symmetric(horizontal: isDesktop ? 80 : 24, vertical: 40,),
                     color: AppColors.background2,
-                    child: Center(
+                    child: ConstrainedBox(
+                      constraints: const BoxConstraints(maxWidth: 1100),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          // Section Title
+                          const SectionTitle(
+                            title: 'Contact',
+                            color: AppColors.green,
+                          ),
+                          const SizedBox(height: 5),
+                          Text(
+                            "Have a project or idea in mind?",
+                            style: GoogleFonts.poppins(
+                              color: Colors.white70,
+                              fontSize: 13,
+                            ),
+                          ),
+                          const SizedBox(height: 12),
+                          const ContactSection(),
+                        ],
+                      ),
+                    ),
+                  ),
+
+                  // Footer
+                  Center(
+                    child: Container(
+                      color: AppColors.background1,
+                      padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 24),
                       child: ConstrainedBox(
                         constraints: const BoxConstraints(maxWidth: 1100),
-                        child: Column(
+                        child: Wrap(
+                          alignment: WrapAlignment.center,
+                          crossAxisAlignment: WrapCrossAlignment.center,
+                          spacing: 6,
+                          runSpacing: 4,
                           children: [
                             Text(
-                              'Let\'s build something together',
+                              'Designed & Crafted by',
                               style: GoogleFonts.poppins(
-                                color: Colors.white,
-                                fontSize: 20,
-                                fontWeight: FontWeight.w600,
+                                color: AppColors.white,
+                                fontSize: 15,
                               ),
                             ),
-                            const SizedBox(height: 10),
-                            ElevatedButton(
-                              onPressed: () {},
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: const Color(0xFF06C167),
-                              ),
-                              child: const Padding(
-                                padding: EdgeInsets.symmetric(
-                                  horizontal: 20,
-                                  vertical: 12,
-                                ),
-                                child: Text("Book a 45 mins session"),
-                              ),
-                            ),
-                            const SizedBox(height: 18),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                _SocialIcon(
-                                  icon: Icons.linked_camera,
-                                  url: 'https://github.com/',
-                                ),
-                                _SocialIcon(
-                                  icon: Icons.link,
-                                  url: 'https://linkedin.com/',
-                                ),
-                                _SocialIcon(
-                                  icon: Icons.alternate_email,
-                                  url: 'https://twitter.com/',
-                                ),
-                                _SocialIcon(
-                                  icon: Icons.book,
-                                  url: 'https://medium.com/',
-                                ),
-                              ],
-                            ),
-                            const SizedBox(height: 18),
                             Text(
-                              'Designed & Crafted by Muhammad Talib',
-                              style: GoogleFonts.poppins(color: Colors.white70),
+                              'Talib Jameel',
+                              style: GoogleFonts.poppins(
+                                color: AppColors.green,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ],
                         ),
@@ -829,30 +828,6 @@ Widget _buildInsightItem(String value, String label) {
       ),
     ],
   );
-}
-
-
-// ======================== Social Icons ========================
-class _SocialIcon extends StatelessWidget {
-  final IconData icon;
-  final String url;
-  const _SocialIcon({required this.icon, required this.url});
-
-  @override
-  Widget build(BuildContext context) {
-    return MouseRegion(
-      cursor: SystemMouseCursors.click,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-        child: GestureDetector(
-          onTap: () async {
-            if (await canLaunchUrl(Uri.parse(url))) launchUrl(Uri.parse(url));
-          },
-          child: Icon(icon, color: Colors.white70),
-        ),
-      ),
-    );
-  }
 }
 
 

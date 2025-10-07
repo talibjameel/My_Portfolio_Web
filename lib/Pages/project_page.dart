@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:url_launcher/url_launcher.dart';
 import '../app_colors.dart';
 
 class ProjectsRow extends StatelessWidget {
@@ -13,37 +11,37 @@ class ProjectsRow extends StatelessWidget {
       {
         'title': 'Badr',
         'image': 'res/quran.png',
-        'link': 'https://github.com/talibjameel/Badr',
+        'description': 'A Quran reading Flutter app with notes and bookmarks.',
       },
       {
         'title': 'ScanText-Ai',
         'image': 'res/quran.png',
-        'link': 'https://github.com/talibjameel/ScanText-Ai',
+        'description': 'Text scanning app powered by AI OCR for quick extraction.',
       },
       {
         'title': 'Kanz',
         'image': 'res/quran.png',
-        'link': 'https://github.com/talibjameel/Kanz_loan_application',
+        'description': 'Loan management app with easy user tracking and approval.',
       },
       {
         'title': 'Igloo',
         'image': 'res/quran.png',
-        'link': 'https://github.com/talibjameel/igloo-app',
+        'description': 'Real estate app with listings and property details.',
       },
       {
         'title': 'Naqdi',
         'image': 'res/quran.png',
-        'link': 'https://github.com/talibjameel/Naqdi',
+        'description': 'Digital wallet app with payments and balance tracking.',
       },
       {
         'title': 'Enfin_Libra',
         'image': 'res/quran.png',
-        'link': 'https://github.com/talibjameel/Enfin_Libra',
+        'description': 'Library app for managing ebooks and reading progress.',
       },
       {
         'title': 'GemStore',
         'image': 'res/quran.png',
-        'link': 'https://github.com/talibjameel/GemStore',
+        'description': 'E-commerce store app for jewelry and accessories.',
       },
     ];
 
@@ -67,7 +65,7 @@ class ProjectsRow extends StatelessWidget {
             crossAxisCount: crossAxisCount,
             crossAxisSpacing: 16,
             mainAxisSpacing: 16,
-            childAspectRatio: 1,
+            childAspectRatio: 1.17,
           ),
           itemCount: projects.length,
           itemBuilder: (context, index) {
@@ -75,7 +73,7 @@ class ProjectsRow extends StatelessWidget {
             return _ProjectCard(
               title: p['title']!,
               image: p['image']!,
-              link: p['link']!,
+              description: p['description']!,
             );
           },
         );
@@ -87,17 +85,18 @@ class ProjectsRow extends StatelessWidget {
 class _ProjectCard extends StatefulWidget {
   final String title;
   final String image;
-  final String link;
+  final String description;
 
   const _ProjectCard({
     required this.title,
     required this.image,
-    required this.link,
+    required this.description,
   });
 
   @override
   State<_ProjectCard> createState() => _ProjectCardState();
 }
+
 class _ProjectCardState extends State<_ProjectCard> {
   bool hover = false;
 
@@ -112,36 +111,40 @@ class _ProjectCardState extends State<_ProjectCard> {
         duration: const Duration(milliseconds: 200),
         decoration: BoxDecoration(
           color: AppColors.background1,
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(16),
           boxShadow: hover
               ? [
             BoxShadow(
-              blurRadius: 18,
+              blurRadius: 20,
               spreadRadius: 4,
               color: primaryGreen.withValues(alpha: 0.6),
-              offset: const Offset(0, 4),
+              offset: const Offset(0, 6),
             ),
           ]
               : [
             BoxShadow(
-              blurRadius: 4,
+              blurRadius: 6,
               spreadRadius: 1,
               color: Colors.black.withValues(alpha: 0.4),
-              offset: const Offset(0, 2),
+              offset: const Offset(0, 3),
             ),
           ],
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
           children: [
-            // Project Image
+            // Project Image (tall and responsive)
             ClipRRect(
-              borderRadius: const BorderRadius.vertical(top: Radius.circular(12)),
-              child: Image.asset(
-                widget.image,
-                height: 250,
-                width: double.infinity,
-                fit: BoxFit.cover,
+              borderRadius:
+              const BorderRadius.vertical(top: Radius.circular(16)),
+              child: AspectRatio(
+                aspectRatio: 16 / 9,
+                child: Image.asset(
+                  widget.image,
+                  fit: BoxFit.cover,
+                  width: double.infinity,
+                ),
               ),
             ),
             const SizedBox(height: 12),
@@ -152,47 +155,26 @@ class _ProjectCardState extends State<_ProjectCard> {
               child: Text(
                 widget.title,
                 style: GoogleFonts.poppins(
-                  fontSize: 16,
+                  fontSize: 17,
                   fontWeight: FontWeight.w700,
                   color: Colors.white,
                 ),
               ),
             ),
-            const SizedBox(height: 12),
+            const SizedBox(height: 6),
 
-            // "See More" button
+            // Project Description (dynamic)
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12.0,),
-              child: MaterialButton(
-                onPressed: () async {
-                  final uri = Uri.parse(widget.link);
-                  if (await canLaunchUrl(uri)) {
-                    await launchUrl(
-                      uri,
-                      mode: LaunchMode.externalApplication,
-                    );
-                  } else {
-                    debugPrint("Could not launch ${widget.link}");
-                  }
-                },
-                color: AppColors.background2,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    SvgPicture.asset(
-                      'icons/github.svg',
-                      height: 20,
-                      width: 20,
-                    ),
-                    const SizedBox(width: 8),
-                    const Text('GitHub'),
-                  ],
+              padding: const EdgeInsets.symmetric(horizontal: 12.0),
+              child: Text(
+                widget.description,
+                style: GoogleFonts.poppins(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w400,
+                  color: Colors.white70,
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),

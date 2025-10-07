@@ -31,7 +31,7 @@ class TechStackSection extends StatelessWidget {
     ),
     TechCategoryModel(
       title: 'Tools',
-      skills: [ 'Github','Jira', 'ClickUp', 'windsurf'],
+      skills: [ 'Github','Jira', 'ClickUp', 'Windsurf'],
     ),
   ];
 
