@@ -61,7 +61,7 @@ class PortfolioPage extends StatelessWidget {
                 children: [
                   CircleAvatar(
                     radius: 30,
-                    backgroundImage: AssetImage("res/profile_image.jpeg"),
+                    backgroundImage: AssetImage("res/profile.jpeg"),
                   ),
                   SizedBox(height: 12),
                   Text(
@@ -534,7 +534,7 @@ class _HeroTabletView extends StatelessWidget {
                   child: Transform.scale(
                     scale: 1.5,
                     child: Image.asset(
-                      'res/profile_image.jpe',
+                      'res/profile_image.png',
                       fit: BoxFit.contain,
                     ),
                   ),
@@ -645,7 +645,7 @@ class _HeroTabletView extends StatelessWidget {
             ),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(12),
-              child: Image.asset('res/profile_image.jpeg', fit: BoxFit.cover),
+              child: Image.asset('res/profile.jpeg', fit: BoxFit.cover),
             ),
           ),
         ),
@@ -787,7 +787,7 @@ class _HeroDesktopView extends StatelessWidget {
                   child: Transform.scale(
                     scale: 1.5,
                     child: Image.asset(
-                      'res/profile_image.jpeg',
+                      'res/profile_image.png',
                       fit: BoxFit.contain,
                     ),
                   ),
