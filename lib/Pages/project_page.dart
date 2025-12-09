@@ -9,37 +9,47 @@ class ProjectsRow extends StatelessWidget {
   Widget build(BuildContext context) {
     final projects = [
       {
-        'title': 'Badr',
-        'image': 'res/quran.png',
+        'title': 'Badr Islamic Activity tracker App',
+        'image': 'res/badr.jpeg',
         'description': 'A Quran reading Flutter app with notes and bookmarks.',
       },
       {
+        'title': 'Habyn Activity Tracker',
+        'image': 'res/habyn.jpeg',
+        'description': 'Habyn Activity Tracker and communication app',
+      },
+      {
+        'title': 'TailorX',
+        'image': 'res/TailorX.jpg',
+        'description': 'TailorX Premium tool for fashion brands and tailors',
+      },
+      {
         'title': 'ScanText-Ai',
-        'image': 'res/quran.png',
+        'image': 'res/scan_text_ai.jpg',
         'description': 'Text scanning app powered by AI OCR for quick extraction.',
       },
       {
-        'title': 'Kanz',
+        'title': 'GYM Star',
+        'image': 'res/gymApp.jpg',
+        'description': 'GYM Star app for managing fitness routines and workouts',
+      },
+      {
+        'title': 'Kanz Loan App',
         'image': 'res/quran.png',
         'description': 'Loan management app with easy user tracking and approval.',
       },
       {
-        'title': 'Igloo',
+        'title': 'Igloo Social Media App',
         'image': 'res/quran.png',
         'description': 'Real estate app with listings and property details.',
       },
       {
-        'title': 'Naqdi',
+        'title': 'Naqdi Loan App',
         'image': 'res/quran.png',
         'description': 'Digital wallet app with payments and balance tracking.',
       },
       {
-        'title': 'Enfin_Libra',
-        'image': 'res/quran.png',
-        'description': 'Library app for managing ebooks and reading progress.',
-      },
-      {
-        'title': 'GemStore',
+        'title': 'GemStore Ecommerce App',
         'image': 'res/quran.png',
         'description': 'E-commerce store app for jewelry and accessories.',
       },

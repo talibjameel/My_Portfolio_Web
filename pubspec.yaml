@@ -16,6 +16,7 @@ dependencies:
   url_launcher: ^6.3.2
   font_awesome_flutter: ^10.9.1
   flutter_svg: ^2.2.1
+  flutter_launcher_icons: ^0.14.4
 
 
 
@@ -52,3 +53,14 @@ flutter:
     - assets/icons/wordpress.svg
     - assets/icons/github.svg
     - assets/res/quran.png
+    - assets/res/badr.jpeg
+    - assets/res/habyn.jpeg
+    - assets/res/TailorX.jpg
+    - assets/res/gymApp.jpg
+    - assets/res/scan_text_ai.jpg
+
+
+flutter_launcher_icons:
+  web:
+    generate: true
+    image_path: assets/Favicon.svg
