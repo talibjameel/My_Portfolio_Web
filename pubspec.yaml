@@ -58,6 +58,9 @@ flutter:
     - assets/res/TailorX.jpg
     - assets/res/gymApp.jpg
     - assets/res/scan_text_ai.jpg
+    - assets/res/kanz_loan_app.jpeg
+    - assets/res/Igloo.jpeg
+    - assets/res/gem_store.jpeg
 
 
 flutter_launcher_icons:

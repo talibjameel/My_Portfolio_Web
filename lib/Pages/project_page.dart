@@ -35,22 +35,17 @@ class ProjectsRow extends StatelessWidget {
       },
       {
         'title': 'Kanz Loan App',
-        'image': 'res/quran.png',
+        'image': 'res/kanz_loan_app.jpeg',
         'description': 'Loan management app with easy user tracking and approval.',
       },
       {
         'title': 'Igloo Social Media App',
-        'image': 'res/quran.png',
-        'description': 'Real estate app with listings and property details.',
-      },
-      {
-        'title': 'Naqdi Loan App',
-        'image': 'res/quran.png',
-        'description': 'Digital wallet app with payments and balance tracking.',
+        'image': 'res/Igloo.jpeg',
+        'description': 'Social media helping  app for sharing thought, photos and videos.',
       },
       {
         'title': 'GemStore Ecommerce App',
-        'image': 'res/quran.png',
+        'image': 'res/gem_store.jpeg',
         'description': 'E-commerce store app for jewelry and accessories.',
       },
     ];
