@@ -48,6 +48,11 @@ class ProjectsRow extends StatelessWidget {
         'image': 'res/gem_store.jpeg',
         'description': 'E-commerce store app for jewelry and accessories.',
       },
+      {
+        'title': 'E-House Movers',
+        'image': 'res/E-house-Mover-app.jpeg',
+        'description': 'A premium logistics and moving platform designed to simplify relocation with intuitive booking, real-time tracking, and scalable architecture.',
+      },
     ];
 
     return LayoutBuilder(
