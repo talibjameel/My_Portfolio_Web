@@ -8,6 +8,8 @@ class ServicesPage extends StatelessWidget {
   static const desktopBreakpoint = 768.0;
   static const tabletBreakpoint = 700.0;
 
+  const ServicesPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -139,7 +141,7 @@ class ServicesPage extends StatelessWidget {
                   ),
                 ),
               ],
-            );
+            ))]);
           },
         ),
       ),
@@ -225,7 +227,7 @@ class ServicesPage extends StatelessWidget {
         border: Border.all(color: AppColors.background1, width: 1),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.1),
+            color: Colors.black.withValues(alpha: 0.1),
             blurRadius: 10,
             offset: const Offset(0, 4),
           ),
@@ -246,7 +248,7 @@ class ServicesPage extends StatelessWidget {
                 width: 56,
                 height: 56,
                 decoration: BoxDecoration(
-                  color: accentColor.withOpacity(0.1),
+                  color: accentColor.withValues(alpha:0.1),
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Center(
@@ -295,10 +297,10 @@ class ServicesPage extends StatelessWidget {
                       vertical: 6,
                     ),
                     decoration: BoxDecoration(
-                      color: accentColor.withOpacity(0.1),
+                      color: accentColor.withValues(alpha:0.1),
                       borderRadius: BorderRadius.circular(20),
                       border: Border.all(
-                        color: accentColor.withOpacity(0.3),
+                        color: accentColor.withValues(alpha:0.3),
                         width: 1,
                       ),
                     ),
@@ -336,7 +338,7 @@ class ServicesPage extends StatelessWidget {
         borderRadius: BorderRadius.circular(8),
         boxShadow: [
           BoxShadow(
-            color: AppColors.green.withOpacity(0.3),
+            color: AppColors.green.withValues(alpha:0.3),
             blurRadius: 20,
             offset: const Offset(0, 8),
           ),
