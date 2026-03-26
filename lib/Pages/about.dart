@@ -104,7 +104,7 @@ class AboutText extends StatelessWidget {
 
         // Expanded Description
         const Text(
-          "I am a passionate software engineer with over 2 years of experience turning ideas "
+          "I am a passionate software engineer with over 3 years of experience turning ideas "
               "into fully-functional digital products. My journey started with building small apps, "
               "and today I specialize in creating scalable, high-performance systems and mobile "
               "applications that users love.\n\n"
