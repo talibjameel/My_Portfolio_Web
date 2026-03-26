@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'Pages/landing_page.dart';
-import 'Pages/services_page.dart';
+import 'package:portfolio_web/Pages/landing_page.dart';
+import 'package:portfolio_web/Pages/services_page.dart';
 
 void main() {
   usePathUrlStrategy();
@@ -23,6 +23,9 @@ class MyApp extends StatelessWidget {
         brightness: Brightness.dark,
       ),
       initialRoute: '/',
+      onUnknownRoute: (settings) {
+        return MaterialPageRoute(builder: (context) => const PortfolioPage());
+      },
       routes: {
         '/': (context) => const PortfolioPage(),
         '/services': (context) => ServicesPage(),
@@ -30,9 +33,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-
-
-
-
-
