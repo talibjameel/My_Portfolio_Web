@@ -26,22 +26,26 @@ class ProjectsRow extends StatelessWidget {
       {
         'title': 'ScanText-Ai',
         'image': 'res/scan_text_ai.jpg',
-        'description': 'Text scanning app powered by AI OCR for quick extraction.',
+        'description':
+            'Text scanning app powered by AI OCR for quick extraction.',
       },
       {
         'title': 'GYM Star',
         'image': 'res/gymApp.jpg',
-        'description': 'GYM Star app for managing fitness routines and workouts',
+        'description':
+            'GYM Star app for managing fitness routines and workouts',
       },
       {
         'title': 'Kanz Loan App',
         'image': 'res/kanz_loan_app.jpeg',
-        'description': 'Loan management app with easy user tracking and approval.',
+        'description':
+            'Loan management app with easy user tracking and approval.',
       },
       {
         'title': 'Igloo Social Media App',
         'image': 'res/Igloo.jpeg',
-        'description': 'Social media helping  app for sharing thought, photos and videos.',
+        'description':
+            'Social media helping  app for sharing thought, photos and videos.',
       },
       {
         'title': 'GemStore Ecommerce App',
@@ -51,7 +55,8 @@ class ProjectsRow extends StatelessWidget {
       {
         'title': 'E-House Movers',
         'image': 'res/E-house-Mover-app.jpeg',
-        'description': 'A premium logistics and moving platform designed to simplify relocation with intuitive booking, real-time tracking, and scalable architecture.',
+        'description':
+            'Premium logistics platform with intuitive booking, real-time tracking, and scalable architecture.',
       },
     ];
 
@@ -75,7 +80,7 @@ class ProjectsRow extends StatelessWidget {
             crossAxisCount: crossAxisCount,
             crossAxisSpacing: 16,
             mainAxisSpacing: 16,
-            childAspectRatio: 1.17,
+            mainAxisExtent: crossAxisCount == 1 ? 320 : 260,
           ),
           itemCount: projects.length,
           itemBuilder: (context, index) {
@@ -124,40 +129,41 @@ class _ProjectCardState extends State<_ProjectCard> {
           borderRadius: BorderRadius.circular(16),
           boxShadow: hover
               ? [
-            BoxShadow(
-              blurRadius: 20,
-              spreadRadius: 4,
-              color: primaryGreen.withValues(alpha: 0.6),
-              offset: const Offset(0, 6),
-            ),
-          ]
+                  BoxShadow(
+                    blurRadius: 20,
+                    spreadRadius: 4,
+                    color: primaryGreen.withValues(alpha: 0.6),
+                    offset: const Offset(0, 6),
+                  ),
+                ]
               : [
-            BoxShadow(
-              blurRadius: 6,
-              spreadRadius: 1,
-              color: Colors.black.withValues(alpha: 0.4),
-              offset: const Offset(0, 3),
-            ),
-          ],
+                  BoxShadow(
+                    blurRadius: 6,
+                    spreadRadius: 1,
+                    color: Colors.black.withValues(alpha: 0.4),
+                    offset: const Offset(0, 3),
+                  ),
+                ],
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
           children: [
             // Project Image (tall and responsive)
-            ClipRRect(
-              borderRadius:
-              const BorderRadius.vertical(top: Radius.circular(16)),
-              child: AspectRatio(
-                aspectRatio: 16 / 9,
+            Flexible(
+              flex: 3,
+              child: ClipRRect(
+                borderRadius: const BorderRadius.vertical(
+                  top: Radius.circular(16),
+                ),
                 child: Image.asset(
                   widget.image,
                   fit: BoxFit.cover,
                   width: double.infinity,
+                  height: double.infinity,
                 ),
               ),
             ),
-            const SizedBox(height: 12),
+            const SizedBox(height: 8),
 
             // Project Title
             Padding(
@@ -165,26 +171,34 @@ class _ProjectCardState extends State<_ProjectCard> {
               child: Text(
                 widget.title,
                 style: GoogleFonts.poppins(
-                  fontSize: 17,
+                  fontSize: 16,
                   fontWeight: FontWeight.w700,
                   color: Colors.white,
                 ),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
               ),
             ),
-            const SizedBox(height: 6),
+            const SizedBox(height: 4),
 
             // Project Description (dynamic)
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12.0),
-              child: Text(
-                widget.description,
-                style: GoogleFonts.poppins(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w400,
-                  color: Colors.white70,
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                child: Text(
+                  widget.description,
+                  style: GoogleFonts.poppins(
+                    fontSize: 13,
+                    fontWeight: FontWeight.w400,
+                    color: Colors.white70,
+                    height: 1.3,
+                  ),
+                  maxLines: 4,
+                  overflow: TextOverflow.ellipsis,
                 ),
               ),
             ),
+            const SizedBox(height: 8),
           ],
         ),
       ),

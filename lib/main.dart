@@ -22,13 +22,12 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: const Color(0xFF0B1324),
         brightness: Brightness.dark,
       ),
-      initialRoute: '/',
       onUnknownRoute: (settings) {
         return MaterialPageRoute(builder: (context) => const PortfolioPage());
       },
       routes: {
         '/': (context) => const PortfolioPage(),
-        '/services': (context) => ServicesPage(),
+        '/services': (context) => const ServicesPage(),
       },
     );
   }

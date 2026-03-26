@@ -13,11 +13,7 @@ class Logo extends StatelessWidget {
           Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
         }
       },
-      child: SvgPicture.asset(
-        "res/logo.svg",
-        width: 300,
-        height: 100,
-      ),
+      child: SvgPicture.asset("res/logo.svg", width: 200, height: 80),
     );
   }
 }
@@ -51,7 +47,11 @@ class TopNav extends StatelessWidget {
                   }
                 } else {
                   if (ModalRoute.of(context)?.settings.name != '/') {
-                    Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
+                    Navigator.pushNamedAndRemoveUntil(
+                      context,
+                      '/',
+                      (route) => false,
+                    );
                     Future.delayed(const Duration(milliseconds: 300), () {
                       PortfolioPage.scrollToSection(entry.value);
                     });
@@ -132,7 +132,8 @@ class PortfolioDrawer extends StatelessWidget {
                 const Text(
                   'Software Engineer',
                   style: TextStyle(
-                    color: Colors.white, // replaced AppColors.white to keep it simple or use import
+                    color: Colors
+                        .white, // replaced AppColors.white to keep it simple or use import
                     fontSize: 16,
                   ),
                 ),
@@ -153,7 +154,11 @@ class PortfolioDrawer extends StatelessWidget {
                   }
                 } else {
                   if (ModalRoute.of(context)?.settings.name != '/') {
-                    Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
+                    Navigator.pushNamedAndRemoveUntil(
+                      context,
+                      '/',
+                      (route) => false,
+                    );
                     Future.delayed(const Duration(milliseconds: 300), () {
                       PortfolioPage.scrollToSection(entry.value);
                     });

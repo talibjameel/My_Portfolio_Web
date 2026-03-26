@@ -21,7 +21,7 @@ class _ServicesPageState extends State<ServicesPage>
     ServiceItem(
       title: 'Mobile Development',
       description:
-      'Building pixel-perfect, high-performance apps for iOS & Android from a single codebase.',
+          'Building pixel-perfect, high-performance apps for iOS & Android from a single codebase.',
       icon: Icons.phone_iphone_rounded,
       tag: 'iOS & Android',
       gradientColors: [Color(0xFF00B8D9), Color(0xFF0097B2)],
@@ -29,7 +29,7 @@ class _ServicesPageState extends State<ServicesPage>
     ServiceItem(
       title: 'Web Development',
       description:
-      'Crafting blazing-fast, responsive web experiences with cutting-edge technology stacks.',
+          'Crafting blazing-fast, responsive web experiences with cutting-edge technology stacks.',
       icon: Icons.language_rounded,
       tag: 'Full Stack',
       gradientColors: [Color(0xFF00C896), Color(0xFF00A878)],
@@ -38,7 +38,7 @@ class _ServicesPageState extends State<ServicesPage>
     ServiceItem(
       title: 'AI Integration',
       description:
-      'Embedding intelligent features — from smart search to predictive analytics — into your products.',
+          'Embedding intelligent features — from smart search to predictive analytics — into your products.',
       icon: Icons.psychology_rounded,
       tag: 'Machine Learning',
       gradientColors: [Color(0xFFFFB347), Color(0xFFFF8C00)],
@@ -46,7 +46,7 @@ class _ServicesPageState extends State<ServicesPage>
     ServiceItem(
       title: 'WordPress Web Development',
       description:
-      'Engineering robust, secure REST & GraphQL APIs built for scale and developer experience.',
+          'Engineering robust, secure REST & GraphQL APIs built for scale and developer experience.',
       icon: Icons.hub_rounded,
       tag: 'Backend',
       gradientColors: [Color(0xFF00C896), Color(0xFF00A878)],
@@ -69,13 +69,13 @@ class _ServicesPageState extends State<ServicesPage>
       parent: _headerController,
       curve: Curves.easeOut,
     );
-    _headerSlide = Tween<Offset>(
-      begin: const Offset(0, -0.3),
-      end: Offset.zero,
-    ).animate(CurvedAnimation(
-      parent: _headerController,
-      curve: Curves.easeOutCubic,
-    ));
+    _headerSlide = Tween<Offset>(begin: const Offset(0, -0.3), end: Offset.zero)
+        .animate(
+          CurvedAnimation(
+            parent: _headerController,
+            curve: Curves.easeOutCubic,
+          ),
+        );
 
     _headerController.forward();
     Future.delayed(const Duration(milliseconds: 300), () {
@@ -95,7 +95,8 @@ class _ServicesPageState extends State<ServicesPage>
     final width = MediaQuery.of(context).size.width;
     final isDesktop = width >= PortfolioPage.desktopBreakpoint;
     final isTablet =
-        width >= PortfolioPage.tabletBreakpoint && width < PortfolioPage.desktopBreakpoint;
+        width >= PortfolioPage.tabletBreakpoint &&
+        width < PortfolioPage.desktopBreakpoint;
 
     return Scaffold(
       backgroundColor: AppColors.background1,
@@ -112,8 +113,7 @@ class _ServicesPageState extends State<ServicesPage>
               ),
               child: Row(
                 children: [
-                  const Logo(),
-                  const Spacer(),
+                  const Expanded(child: Logo()),
                   if (isDesktop) const TopNav() else const MobileView(),
                 ],
               ),
@@ -121,7 +121,7 @@ class _ServicesPageState extends State<ServicesPage>
           ),
 
           // ── Premium SliverAppBar ──────────────────────────────────
-// ── Header Container ──────────────────────────────────────────────
+          // ── Header Container ──────────────────────────────────────────────
           SliverToBoxAdapter(
             child: FadeTransition(
               opacity: _headerFade,
@@ -179,7 +179,9 @@ class _ServicesPageState extends State<ServicesPage>
                             // Badge
                             Container(
                               padding: const EdgeInsets.symmetric(
-                                  horizontal: 12, vertical: 5),
+                                horizontal: 12,
+                                vertical: 5,
+                              ),
                               decoration: BoxDecoration(
                                 color: AppColors.green.withValues(alpha: 0.15),
                                 borderRadius: BorderRadius.circular(20),
@@ -199,7 +201,9 @@ class _ServicesPageState extends State<ServicesPage>
                                       shape: BoxShape.circle,
                                       boxShadow: [
                                         BoxShadow(
-                                          color: AppColors.green.withValues(alpha: 0.8),
+                                          color: AppColors.green.withValues(
+                                            alpha: 0.8,
+                                          ),
                                           blurRadius: 6,
                                           spreadRadius: 1,
                                         ),
@@ -277,39 +281,37 @@ class _ServicesPageState extends State<ServicesPage>
             ),
           ),
 
-
           // ── Service Cards ─────────────────────────────────────────
           SliverPadding(
             padding: const EdgeInsets.fromLTRB(20, 0, 20, 40),
             sliver: SliverList(
-              delegate: SliverChildBuilderDelegate(
-                    (context, index) {
-                  return AnimatedBuilder(
-                    animation: _listController,
-                    builder: (context, child) {
-                      final delay = index * 0.12;
-                      final start = delay;
-                      final end = (delay + 0.5).clamp(0.0, 1.0);
-                      final progress = Curves.easeOutCubic.transform(
-                        ((_listController.value - start) / (end - start))
-                            .clamp(0.0, 1.0),
-                      );
-                      return Opacity(
-                        opacity: progress,
-                        child: Transform.translate(
-                          offset: Offset(0, 30 * (1 - progress)),
-                          child: child,
-                        ),
-                      );
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.only(bottom: 14),
-                      child: _PremiumServiceCard(service: services[index]),
-                    ),
-                  );
-                },
-                childCount: services.length,
-              ),
+              delegate: SliverChildBuilderDelegate((context, index) {
+                return AnimatedBuilder(
+                  animation: _listController,
+                  builder: (context, child) {
+                    final delay = index * 0.12;
+                    final start = delay;
+                    final end = (delay + 0.5).clamp(0.0, 1.0);
+                    final progress = Curves.easeOutCubic.transform(
+                      ((_listController.value - start) / (end - start)).clamp(
+                        0.0,
+                        1.0,
+                      ),
+                    );
+                    return Opacity(
+                      opacity: progress,
+                      child: Transform.translate(
+                        offset: Offset(0, 30 * (1 - progress)),
+                        child: child,
+                      ),
+                    );
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 14),
+                    child: _PremiumServiceCard(service: services[index]),
+                  ),
+                );
+              }, childCount: services.length),
             ),
           ),
         ],
@@ -341,9 +343,10 @@ class _PremiumServiceCardState extends State<_PremiumServiceCard>
       vsync: this,
       duration: const Duration(milliseconds: 120),
     );
-    _scaleAnim = Tween<double>(begin: 1.0, end: 0.97).animate(
-      CurvedAnimation(parent: _pressController, curve: Curves.easeOut),
-    );
+    _scaleAnim = Tween<double>(
+      begin: 1.0,
+      end: 0.97,
+    ).animate(CurvedAnimation(parent: _pressController, curve: Curves.easeOut));
   }
 
   @override
@@ -383,19 +386,19 @@ class _PremiumServiceCardState extends State<_PremiumServiceCard>
             borderRadius: BorderRadius.circular(20),
             border: Border.all(
               color: _isPressed
-                  ? AppColors.green.withValues(alpha:0.5)
-                  : Colors.white.withValues(alpha:0.07),
+                  ? AppColors.green.withValues(alpha: 0.5)
+                  : Colors.white.withValues(alpha: 0.07),
               width: 1,
             ),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withValues(alpha:0.3),
+                color: Colors.black.withValues(alpha: 0.3),
                 blurRadius: 20,
                 offset: const Offset(0, 8),
               ),
               if (_isPressed)
                 BoxShadow(
-                  color: AppColors.green.withValues(alpha:0.1),
+                  color: AppColors.green.withValues(alpha: 0.1),
                   blurRadius: 24,
                   spreadRadius: 2,
                 ),
@@ -416,7 +419,7 @@ class _PremiumServiceCardState extends State<_PremiumServiceCard>
                       shape: BoxShape.circle,
                       gradient: RadialGradient(
                         colors: [
-                          s.gradientColors[0].withValues(alpha:0.08),
+                          s.gradientColors[0].withValues(alpha: 0.08),
                           Colors.transparent,
                         ],
                       ),
@@ -442,7 +445,7 @@ class _PremiumServiceCardState extends State<_PremiumServiceCard>
                           borderRadius: BorderRadius.circular(16),
                           boxShadow: [
                             BoxShadow(
-                              color: s.gradientColors[0].withValues(alpha:0.4),
+                              color: s.gradientColors[0].withValues(alpha: 0.4),
                               blurRadius: 16,
                               offset: const Offset(0, 6),
                             ),
@@ -461,9 +464,13 @@ class _PremiumServiceCardState extends State<_PremiumServiceCard>
                             // Tag pill
                             Container(
                               padding: const EdgeInsets.symmetric(
-                                  horizontal: 9, vertical: 3),
+                                horizontal: 9,
+                                vertical: 3,
+                              ),
                               decoration: BoxDecoration(
-                                color: s.gradientColors[0].withValues(alpha:0.12),
+                                color: s.gradientColors[0].withValues(
+                                  alpha: 0.12,
+                                ),
                                 borderRadius: BorderRadius.circular(20),
                               ),
                               child: Text(
@@ -497,7 +504,7 @@ class _PremiumServiceCardState extends State<_PremiumServiceCard>
                             Text(
                               s.description,
                               style: TextStyle(
-                                color: Colors.white.withValues(alpha:0.55),
+                                color: Colors.white.withValues(alpha: 0.55),
                                 fontSize: 13,
                                 fontWeight: FontWeight.w400,
                                 height: 1.5,
@@ -529,12 +536,12 @@ class _PremiumServiceCardState extends State<_PremiumServiceCard>
                                 Container(
                                   padding: const EdgeInsets.all(6),
                                   decoration: BoxDecoration(
-                                    color: Colors.white.withValues(alpha:0.06),
+                                    color: Colors.white.withValues(alpha: 0.06),
                                     borderRadius: BorderRadius.circular(8),
                                   ),
                                   child: Icon(
                                     Icons.bookmark_border_rounded,
-                                    color: Colors.white.withValues(alpha:0.4),
+                                    color: Colors.white.withValues(alpha: 0.4),
                                     size: 16,
                                   ),
                                 ),
@@ -566,7 +573,7 @@ class _StatsRow extends StatelessWidget {
         color: AppColors.background2,
         borderRadius: BorderRadius.circular(20),
         border: Border.all(
-          color: Colors.white.withValues(alpha:0.07),
+          color: Colors.white.withValues(alpha: 0.07),
           width: 1,
         ),
       ),
@@ -605,8 +612,8 @@ class _StatItemState extends State<_StatItem>
     final match = RegExp(r'^([\d.]+)(.*)$').firstMatch(raw);
     if (match == null) return (number: 0, suffix: raw);
     return (
-    number: double.tryParse(match.group(1)!) ?? 0,
-    suffix: match.group(2)!.trim(),
+      number: double.tryParse(match.group(1)!) ?? 0,
+      suffix: match.group(2)!.trim(),
     );
   }
 
@@ -617,9 +624,10 @@ class _StatItemState extends State<_StatItem>
       vsync: this,
       duration: const Duration(milliseconds: 2000),
     );
-    _animation = Tween<double>(begin: 0, end: _parsed.number).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.easeOut),
-    );
+    _animation = Tween<double>(
+      begin: 0,
+      end: _parsed.number,
+    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeOut));
     _controller.forward();
   }
 
@@ -669,15 +677,13 @@ class _StatItemState extends State<_StatItem>
   }
 }
 
-
-
 class _Divider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
       width: 1,
       height: 32,
-      color: Colors.white.withValues(alpha:0.08),
+      color: Colors.white.withValues(alpha: 0.08),
     );
   }
 }
@@ -696,9 +702,7 @@ class _GlowOrb extends StatelessWidget {
       height: size,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        gradient: RadialGradient(
-          colors: [color, Colors.transparent],
-        ),
+        gradient: RadialGradient(colors: [color, Colors.transparent]),
       ),
     );
   }
