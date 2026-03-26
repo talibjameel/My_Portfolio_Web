@@ -9,6 +9,7 @@ import '../app_colors.dart';
 import 'about.dart';
 import 'contact_page.dart';
 import 'exprience_page.dart';
+import 'services_page.dart';
 
 class PortfolioPage extends StatelessWidget {
   const PortfolioPage({super.key});
@@ -24,6 +25,7 @@ class PortfolioPage extends StatelessWidget {
   static final projectsKey = GlobalKey();
   static final experienceKey = GlobalKey();
   static final contactKey = GlobalKey();
+  static final servicesKey = GlobalKey();
 
 
   static void scrollToSection(GlobalKey key) {
@@ -45,6 +47,7 @@ class PortfolioPage extends StatelessWidget {
       'Tech': techKey,
       'Projects': projectsKey,
       'Experience': experienceKey,
+      'Service': servicesKey,
       'Contact': contactKey,
     };
     return Scaffold(
@@ -90,7 +93,11 @@ class PortfolioPage extends StatelessWidget {
                 ),
                 onTap: () {
                   Navigator.pop(context);
-                  scrollToSection(entry.value);
+                  if (entry.key == 'Service') {
+                    Navigator.pushNamed(context, '/services');
+                  } else {
+                    scrollToSection(entry.value);
+                  }
                 },
               ),
           ],
@@ -353,6 +360,7 @@ class _TopNav extends StatelessWidget {
       'Tech': PortfolioPage.techKey,
       'Projects': PortfolioPage.projectsKey,
       'Experience': PortfolioPage.experienceKey,
+      'Service': PortfolioPage.servicesKey,
       'Contact': PortfolioPage.contactKey,
     };
 
@@ -366,7 +374,11 @@ class _TopNav extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 30),
             child: TextButton(
               onPressed: () {
-                PortfolioPage.scrollToSection(entry.value);
+                if (entry.key == 'Service') {
+                  Navigator.pushNamed(context, '/services');
+                } else {
+                  PortfolioPage.scrollToSection(entry.value);
+                }
               },
               style: ButtonStyle(
                 overlayColor: WidgetStateProperty.all(

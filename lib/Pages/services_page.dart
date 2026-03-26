@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
+import '../app_colors.dart';
 
 class ServicesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.background1,
       appBar: AppBar(
-        title: Text('Our Services'),
-        backgroundColor: Colors.black,
+        title: Text('Our Services', style: TextStyle(color: Colors.white)),
+        backgroundColor: AppColors.background1,
+        elevation: 0,
+        iconTheme: IconThemeData(color: Colors.white),
       ),
       body: Container(
-        color: Color(0xFF121212), // Dark theme background
+        color: AppColors.background1,
         padding: EdgeInsets.all(16.0),
         child: ListView(
           children: <Widget>[ 
@@ -51,13 +55,14 @@ class ServiceCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Colors.grey[850],
+      color: AppColors.background2,
       margin: EdgeInsets.symmetric(vertical: 10.0),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: Padding(
         padding: EdgeInsets.all(16.0),
         child: Row(
           children: <Widget>[
-            Icon(icon, color: Colors.white, size: 40),
+            Icon(icon, color: AppColors.green, size: 40),
             SizedBox(width: 16.0),
             Expanded(
               child: Column(
@@ -65,7 +70,7 @@ class ServiceCard extends StatelessWidget {
                 children: <Widget>[
                   Text(
                     title,
-                    style: TextStyle(color: Colors.white, fontSize: 22),
+                    style: TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(height: 8.0),
                   Text(
