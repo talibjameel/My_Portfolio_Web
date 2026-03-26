@@ -14,10 +14,12 @@ class _SocialIconsRowState extends State<SocialIconsRow> {
   final Color iconColor = AppColors.green;
 
   final Map<IconData, String> links = {
-    FontAwesomeIcons.linkedinIn: "https://www.linkedin.com/in/talib-jameel-3622a6226/",
+    FontAwesomeIcons.linkedinIn:
+        "https://www.linkedin.com/in/talib-jameel-3622a6226/",
     FontAwesomeIcons.github: "https://github.com/talibjameel",
     FontAwesomeIcons.instagram: "https://instagram.com/",
-    FontAwesomeIcons.stackOverflow: "https://stackoverflow.com/users/27923786/talib-developer",
+    FontAwesomeIcons.stackOverflow:
+        "https://stackoverflow.com/users/27923786/talib-developer",
   };
 
   final Map<IconData, bool> _hovering = {};
@@ -49,7 +51,8 @@ class _SocialIconsRowState extends State<SocialIconsRow> {
         : 8;
 
     return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: links.entries.map((entry) {
         final icon = entry.key;
         final url = entry.value;
@@ -76,19 +79,19 @@ class _SocialIconsRowState extends State<SocialIconsRow> {
                   borderRadius: BorderRadius.circular(containerSize / 2),
                   boxShadow: isHovering
                       ? [
-                    BoxShadow(
-                      blurRadius: 16,
-                      color: iconColor.withValues(alpha: 0.6),
-                      offset: const Offset(0, 0),
-                    ),
-                  ]
+                          BoxShadow(
+                            blurRadius: 16,
+                            color: iconColor.withValues(alpha: 0.6),
+                            offset: const Offset(0, 0),
+                          ),
+                        ]
                       : [
-                    const BoxShadow(
-                      blurRadius: 12,
-                      color: Colors.black12,
-                      offset: Offset(0, 0),
-                    ),
-                  ],
+                          const BoxShadow(
+                            blurRadius: 12,
+                            color: Colors.black12,
+                            offset: Offset(0, 0),
+                          ),
+                        ],
                 ),
                 child: Icon(icon, color: iconColor, size: iconSize),
               ),

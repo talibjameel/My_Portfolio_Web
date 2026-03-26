@@ -12,6 +12,7 @@ class ContactSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(50),
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
@@ -28,6 +29,7 @@ class ContactSection extends StatelessWidget {
           Positioned.fill(
             child: Container(
               decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(50),
                 gradient: RadialGradient(
                   center: const Alignment(0.3, -0.2),
                   radius: 1.8,
@@ -42,16 +44,16 @@ class ContactSection extends StatelessWidget {
 
           // Main content
           Container(
-            padding: const EdgeInsets.symmetric(vertical: 120, horizontal: 20),
+            padding: const EdgeInsets.symmetric(vertical: 80, horizontal: 20),
             child: Column(
               children: [
                 // Professional Header
                 _buildProfessionalHeader(),
-                const SizedBox(height: 100),
+                const SizedBox(height: 80),
 
                 // Contact Grid
                 _buildProfessionalContactGrid(),
-                const SizedBox(height: 100),
+                const SizedBox(height: 80),
 
                 // Enhanced Social Section
                 _buildProfessionalSocialSection(),
@@ -331,7 +333,7 @@ class ContactSection extends StatelessWidget {
             ),
           ),
           child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 60, vertical: 32),
+            padding: const EdgeInsets.symmetric(horizontal: 60, vertical: 10),
             decoration: BoxDecoration(
               color: AppColors.background1,
               borderRadius: BorderRadius.circular(77),

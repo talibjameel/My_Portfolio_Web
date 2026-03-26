@@ -127,7 +127,7 @@ class AboutText extends StatelessWidget {
     );
   }
   void downloadResume() async {
-    const url = "https://drive.google.com/file/d/1umKG_DZgHTgtWQN2ObyNdG3mGrHJIvfK/view?usp=sharing";
+    const url = "https://drive.google.com/file/d/1JzZU8vbGUsKsoJXNS23deqtrrSykOsd2/view?usp=sharing";
     final uri = Uri.parse(url);
 
     if (await canLaunchUrl(uri)) {
