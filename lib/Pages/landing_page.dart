@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:portfolio_web/Pages/project_page.dart';
 import 'package:portfolio_web/Pages/tech_stack_page.dart';
 import 'package:portfolio_web/Utility%20Funcation/custom_button.dart';
+import 'package:portfolio_web/Widgets/header_widgets.dart';
 import '../Utility Funcation/social_icons.dart';
 import '../app_colors.dart';
 import 'about.dart';
 import 'contact_page.dart';
 import 'exprience_page.dart';
-import 'services_page.dart';
 
 class PortfolioPage extends StatelessWidget {
   const PortfolioPage({super.key});
@@ -42,67 +41,9 @@ class PortfolioPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     debugPrint("Font Family: ${const TextStyle(fontFamily: 'TestFont').debugLabel}");
-    final items = {
-      'About': aboutKey,
-      'Tech': techKey,
-      'Projects': projectsKey,
-      'Experience': experienceKey,
-      'Service': servicesKey,
-      'Contact': contactKey,
-    };
     return Scaffold(
       backgroundColor: AppColors.background1,
-      endDrawer: Drawer(
-        backgroundColor: Colors.black87,
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(color: Colors.black54),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  CircleAvatar(
-                    radius: 30,
-                    backgroundImage: AssetImage("res/profile.jpeg"),
-                  ),
-                  SizedBox(height: 12),
-                  Text(
-                    'Talib Jameel',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Text(
-                    'Software Engineer',
-                    style: TextStyle(
-                      color: AppColors.white,
-                      fontSize: 16,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            for (final entry in items.entries)
-              ListTile(
-                title: Text(
-                  entry.key,
-                  style: const TextStyle(color: Colors.white70),
-                ),
-                onTap: () {
-                  Navigator.pop(context);
-                  if (entry.key == 'Service') {
-                    Navigator.pushNamed(context, '/services');
-                  } else {
-                    scrollToSection(entry.value);
-                  }
-                },
-              ),
-          ],
-        ),
-      ),
+      endDrawer: const PortfolioDrawer(),
       body: SafeArea(
         child: LayoutBuilder(
           builder: (context, constraints) {
@@ -131,12 +72,12 @@ class PortfolioPage extends StatelessWidget {
                     ),
                     child: Row(
                       children: [
-                        const _Logo(),
+                        const Logo(),
                         const Spacer(),
                         if (isDesktop)
-                          const _TopNav()
+                          const TopNav()
                         else
-                          _MobileView(),
+                          const MobileView(),
                       ],
                     ),
                   ),
@@ -335,83 +276,7 @@ class PortfolioPage extends StatelessWidget {
   }
 }
 
-// ======================== Widgets ========================
-
-class _Logo extends StatelessWidget {
-  const _Logo();
-
-  @override
-  Widget build(BuildContext context) {
-    return  SvgPicture.asset(
-      width: 300,
-      height: 100,
-    "res/logo.svg",
-    );
-  }
-}
-
-class _TopNav extends StatelessWidget {
-  const _TopNav();
-
-  @override
-  Widget build(BuildContext context) {
-    final items = {
-      'About': PortfolioPage.aboutKey,
-      'Tech': PortfolioPage.techKey,
-      'Projects': PortfolioPage.projectsKey,
-      'Experience': PortfolioPage.experienceKey,
-      'Service': PortfolioPage.servicesKey,
-      'Contact': PortfolioPage.contactKey,
-    };
-
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-
-      children: [
-        for (final entry in items.entries)
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30),
-            child: TextButton(
-              onPressed: () {
-                if (entry.key == 'Service') {
-                  Navigator.pushNamed(context, '/services');
-                } else {
-                  PortfolioPage.scrollToSection(entry.value);
-                }
-              },
-              style: ButtonStyle(
-                overlayColor: WidgetStateProperty.all(
-                  Colors.green.withValues(alpha: 0.2),
-                ),
-              ),
-              child: Text(
-                entry.key,
-                style: const TextStyle(color: Colors.white70),
-              ),
-            ),
-          ),
-      ],
-    );
-  }
-}
-
-/// For Mobile view
-class _MobileView extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Builder(
-      builder: (context) => IconButton(
-        icon: const Icon(Icons.menu, color: Colors.white),
-        onPressed: () {
-          Scaffold.of(context).openEndDrawer();
-        },
-      ),
-    );
-  }
-}
-
-/// For tablet view
+// ======================== Sections ========================
 class _HeroTabletView extends StatelessWidget {
   final bool isTablet;
   const _HeroTabletView({required this.isTablet});
