@@ -371,8 +371,8 @@ class _HeroTabletView extends StatelessWidget {
                   spacing: 20,
                   runSpacing: 15,
                   children: [
-                    _buildInsightItem('3', 'Years\nExperience'),
-                    _buildInsightItem('10', 'Projects\nCompleted'),
+                    _buildInsightItem('5', 'Years\nExperience'),
+                    _buildInsightItem('15+', 'Projects\nCompleted'),
                     _buildInsightItem('10k', 'Content\nReached & views'),
                   ],
                 ),
@@ -625,8 +625,8 @@ class _HeroDesktopView extends StatelessWidget {
                 spacing: 20,
                 runSpacing: 15,
                 children: [
-                  _buildInsightItem('3', 'Years\nExperience'),
-                  _buildInsightItem('10', 'Projects\nCompleted'),
+                  _buildInsightItem('5', 'Years\nExperience'),
+                  _buildInsightItem('15+', 'Projects\nCompleted'),
                   _buildInsightItem('10k', 'Content\nReached & views'),
                 ],
               ),
