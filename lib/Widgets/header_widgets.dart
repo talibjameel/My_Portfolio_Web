@@ -121,7 +121,7 @@ class PortfolioDrawer extends StatelessWidget {
                   backgroundImage: AssetImage("res/profile.jpeg"),
                 ),
                 SizedBox(height: 12),
-                const Text(
+                Text(
                   'Talib Jameel',
                   style: TextStyle(
                     color: Colors.white,
@@ -129,7 +129,7 @@ class PortfolioDrawer extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                const Text(
+                Text(
                   'Software Engineer',
                   style: TextStyle(
                     color: Colors

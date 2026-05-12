@@ -88,7 +88,36 @@ class ExperienceTimeline extends StatelessWidget {
       ],
     ),
     Experience(
-      company: 'E-House Mover (Dubai, UAE)',
+      company: 'Unique Web Designer',
+      role: 'Full Stack Developer',
+      duration: 'Jan - Mar 25 (Project base)',
+      technologies: [
+        'React.js',
+        'Node.js',
+        'Express.js',
+        'MongoDB',
+        'JavaScript',
+        'Chrome Extension API',
+        'WebRTC',
+        'Socket.io',
+        'QuickBooks API',
+        'REST APIs',
+        'Git',
+        'Responsive Design',
+      ],
+      responsibilities: [
+        'Developed Invoice App - a comprehensive management tool that recodes and enhances QuickBooks functionality for improved invoice handling and tracking.',
+        'Built Double Take Chrome Extension - an innovative e-commerce tool that extracts product data from web pages and enables sharing with friends through integrated chat system.',
+        'Implemented real-time chat functionality using WebRTC and Socket.io for seamless communication between users in the Chrome extension.',
+        'Designed and developed responsive web applications with modern UI/UX principles and cross-browser compatibility.',
+        'Integrated QuickBooks API for seamless data synchronization and enhanced invoice management capabilities.',
+        'Created custom Chrome extension features for product data extraction, analysis, and social sharing functionalities.',
+        'Managed full-stack development including database design, API development, and frontend implementation.',
+        'Collaborated with cross-functional teams to deliver high-quality web solutions within tight 3-month project timeline.',
+      ],
+    ),
+    Experience(
+      company: 'E-House Mover',
       role: 'Flutter Developer (Android & iOS)',
       duration: 'Oct - Dec 25 (Project base)',
       technologies: [
@@ -119,7 +148,7 @@ class ExperienceTimeline extends StatelessWidget {
     Experience(
       company: 'Infinkey Solutions',
       role: 'Flutter Developer',
-      duration: '2022 - 2023',
+      duration: '2021 - 2023',
       technologies: [
         'Flutter',
         'Dart',
