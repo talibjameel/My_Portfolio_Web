@@ -9,9 +9,21 @@ class ProjectsRow extends StatelessWidget {
   Widget build(BuildContext context) {
     final projects = [
       {
-        'title': 'Badr Islamic Activity tracker App',
-        'image': 'res/badr.jpeg',
-        'description': 'A Quran reading Flutter app with notes and bookmarks.',
+        'title': 'E-House Movers',
+        'image': 'res/E-house-Mover-app.jpeg',
+        'description':
+        'Premium logistics platform with intuitive booking, real-time tracking, and scalable architecture.',
+      },
+      {
+        'title': 'ScanText-Ai',
+        'image': 'res/scan_text_ai.jpg',
+        'description':
+        'Text scanning app powered by AI OCR for quick extraction.',
+      },
+      {
+        'title': 'GemStore Ecommerce App',
+        'image': 'res/gem_store.jpeg',
+        'description': 'E-commerce store app for jewelry and accessories.',
       },
       {
         'title': 'Habyn Activity Tracker',
@@ -23,12 +35,7 @@ class ProjectsRow extends StatelessWidget {
         'image': 'res/TailorX.jpg',
         'description': 'TailorX Premium tool for fashion brands and tailors',
       },
-      {
-        'title': 'ScanText-Ai',
-        'image': 'res/scan_text_ai.jpg',
-        'description':
-            'Text scanning app powered by AI OCR for quick extraction.',
-      },
+
       {
         'title': 'GYM Star',
         'image': 'res/gymApp.jpg',
@@ -48,15 +55,29 @@ class ProjectsRow extends StatelessWidget {
             'Social media helping  app for sharing thought, photos and videos.',
       },
       {
-        'title': 'GemStore Ecommerce App',
-        'image': 'res/gem_store.jpeg',
-        'description': 'E-commerce store app for jewelry and accessories.',
+        'title': 'Badr Islamic Activity tracker App',
+        'image': 'res/badr.jpeg',
+        'description': 'A Quran reading Flutter app with notes and bookmarks.',
       },
       {
-        'title': 'E-House Movers',
-        'image': 'res/E-house-Mover-app.jpeg',
-        'description':
-            'Premium logistics platform with intuitive booking, real-time tracking, and scalable architecture.',
+        'title': 'ScopeFlow',
+        'image': 'res/scopeFlow.png',
+        'description': 'Mobile app for project scope management and workflow optimization.',
+      },
+      {
+        'title': 'ListAI',
+        'image': 'res/listAI.png',
+        'description': 'AI-powered list management app with smart organization features.',
+      },
+      {
+        'title': 'DoubleTake',
+        'image': 'res/doubleTake.png',
+        'description': 'Chrome extension for e-commerce product data extraction and social sharing.',
+      },
+      {
+        'title': 'Invoice App',
+        'image': 'res/invoice.png',
+        'description': 'Management tool for QuickBooks invoice handling and tracking.',
       },
     ];
 

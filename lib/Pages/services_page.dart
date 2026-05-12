@@ -516,9 +516,9 @@ class _PremiumServiceCardState extends State<_PremiumServiceCard>
                             // Footer row
                             Row(
                               children: [
-                                // Learn more
+                                // Contact
                                 Text(
-                                  'Learn more',
+                                  'Contact',
                                   style: TextStyle(
                                     color: s.gradientColors[0],
                                     fontSize: 13,
