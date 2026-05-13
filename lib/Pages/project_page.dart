@@ -26,6 +26,21 @@ class ProjectsRow extends StatelessWidget {
         'description': 'E-commerce store app for jewelry and accessories.',
       },
       {
+        'title': 'ListAI',
+        'image': 'res/listAI.jpeg',
+        'description': 'AI-powered list management app with smart organization features.',
+      },
+      {
+        'title': 'DoubleTake',
+        'image': 'res/doubleTake.jpeg',
+        'description': 'Chrome extension for e-commerce product data extraction and social sharing.',
+      },
+      {
+        'title': 'Invoice App',
+        'image': 'res/invoice.jpeg',
+        'description': 'Management tool for QuickBooks invoice handling and tracking.',
+      },
+      {
         'title': 'Habyn Activity Tracker',
         'image': 'res/habyn.jpeg',
         'description': 'Habyn Activity Tracker and communication app',
@@ -42,12 +57,12 @@ class ProjectsRow extends StatelessWidget {
         'description':
             'GYM Star app for managing fitness routines and workouts',
       },
-      {
-        'title': 'Kanz Loan App',
-        'image': 'res/kanz_loan_app.jpeg',
-        'description':
-            'Loan management app with easy user tracking and approval.',
-      },
+      // {
+      //   'title': 'Kanz Loan App',
+      //   'image': 'res/kanz_loan_app.jpeg',
+      //   'description':
+      //       'Loan management app with easy user tracking and approval.',
+      // },
       {
         'title': 'Igloo Social Media App',
         'image': 'res/Igloo.jpeg',
@@ -61,23 +76,8 @@ class ProjectsRow extends StatelessWidget {
       },
       {
         'title': 'ScopeFlow',
-        'image': 'res/scopeFlow.png',
+        'image': 'res/scopeFlow.jpeg',
         'description': 'Mobile app for project scope management and workflow optimization.',
-      },
-      {
-        'title': 'ListAI',
-        'image': 'res/listAI.png',
-        'description': 'AI-powered list management app with smart organization features.',
-      },
-      {
-        'title': 'DoubleTake',
-        'image': 'res/doubleTake.png',
-        'description': 'Chrome extension for e-commerce product data extraction and social sharing.',
-      },
-      {
-        'title': 'Invoice App',
-        'image': 'res/invoice.png',
-        'description': 'Management tool for QuickBooks invoice handling and tracking.',
       },
     ];
 
