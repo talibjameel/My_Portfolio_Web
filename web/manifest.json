@@ -1,11 +1,11 @@
 {
-    "name": "portfolio_web",
-    "short_name": "portfolio_web",
+    "name": "Talib Jameel | Portfolio",
+    "short_name": "Talib's Portfolio",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#FFFFFF",
-    "theme_color": "#000000",
-    "description": "portfolio_web",
+    "background_color": "#2D2E32",
+    "theme_color": "#6EF3A5",
+    "description": "Talib Jameel - Software Engineer and Flutter Developer Portfolio.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

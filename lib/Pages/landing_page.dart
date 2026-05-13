@@ -411,7 +411,7 @@ class _HeroTabletView extends StatelessWidget {
                   child: Transform.scale(
                     scale: 1.5,
                     child: Image.asset(
-                      'res/profile_image.png',
+                      'profile_image.png',
                       fit: BoxFit.contain,
                     ),
                   ),
@@ -664,7 +664,7 @@ class _HeroDesktopView extends StatelessWidget {
                   child: Transform.scale(
                     scale: 1.5,
                     child: Image.asset(
-                      'res/profile_image.png',
+                      'profile_image.png',
                       fit: BoxFit.contain,
                     ),
                   ),

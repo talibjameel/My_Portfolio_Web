@@ -27,17 +27,17 @@ class ProjectsRow extends StatelessWidget {
       },
       {
         'title': 'ListAI',
-        'image': 'res/listAI.jpeg',
+        'image': 'res/listA.jpeg',
         'description': 'AI-powered list management app with smart organization features.',
       },
       {
         'title': 'DoubleTake',
-        'image': 'res/doubleTake.jpeg',
+        'image': 'res/doubleTak.jpeg',
         'description': 'Chrome extension for e-commerce product data extraction and social sharing.',
       },
       {
         'title': 'Invoice App',
-        'image': 'res/invoice.jpeg',
+        'image': 'res/invoic.jpeg',
         'description': 'Management tool for QuickBooks invoice handling and tracking.',
       },
       {
@@ -76,7 +76,7 @@ class ProjectsRow extends StatelessWidget {
       },
       {
         'title': 'ScopeFlow',
-        'image': 'res/scopeFlow.jpeg',
+        'image': 'res/scopeFlo.jpeg',
         'description': 'Mobile app for project scope management and workflow optimization.',
       },
     ];

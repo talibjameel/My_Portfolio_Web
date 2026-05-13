@@ -32,40 +32,13 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/res/profile.jpeg
-    - assets/res/profile_image.png
-    - assets/illustrations/developer_working.svg
-    - assets/res/logo.svg
-    - assets/icons/flutter.svg
-    - assets/icons/dart.svg
-    - assets/icons/android.svg
-    - assets/icons/apple.svg
-    - assets/icons/flutter_web.svg
-    - assets/icons/node.svg
-    - assets/icons/express.svg
-    - assets/icons/api.svg
-    - assets/icons/postman.svg
-    - assets/icons/firebase.svg
-    - assets/icons/sql.svg
-    - assets/icons/AWS_S3.svg
-    - assets/icons/jira.svg
-    - assets/icons/clickUp.svg
-    - assets/icons/windsurf.svg
-    - assets/icons/responsive_design.svg
-    - assets/icons/wordpress.svg
-    - assets/icons/github.svg
-    - assets/res/quran.png
-    - assets/res/badr.jpeg
-    - assets/res/habyn.jpeg
-    - assets/res/TailorX.jpg
-    - assets/res/gymApp.jpg
-    - assets/res/scan_text_ai.jpg
-    - assets/res/kanz_loan_app.jpeg
-    - assets/res/Igloo.jpeg
-    - assets/res/gem_store.jpeg
+    - assets/
+    - assets/res/
+    - assets/icons/
+    - assets/illustrations/
 
 
 flutter_launcher_icons:
   web:
     generate: true
-    image_path: assets/Favicon.svg
+    image_path: assets/Favicon.png

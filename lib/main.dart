@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Talib | Portfolio',
+      title: 'Talib Jameel | Portfolio',
       theme: ThemeData(
         textTheme: GoogleFonts.poppinsTextTheme(),
         scaffoldBackgroundColor: const Color(0xFF0B1324),
