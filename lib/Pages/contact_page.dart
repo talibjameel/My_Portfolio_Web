@@ -597,13 +597,14 @@ $message
 Sent from your portfolio website
 ''';
       
-      // Create mailto URL
+      // Create mailto URL using queryParameters to handle encoding correctly
       final Uri emailLaunchUri = Uri(
         scheme: 'mailto',
         path: 'Developer82542@gmail.com',
-        query: Uri.encodeFull(
-          'subject=Portfolio Contact: ${Uri.encodeComponent(subject)}&body=${Uri.encodeComponent(emailBody)}',
-        ),
+        queryParameters: {
+          'subject': 'Portfolio Contact: $subject',
+          'body': emailBody,
+        },
       );
       
       setState(() => _isSubmitting = false);
