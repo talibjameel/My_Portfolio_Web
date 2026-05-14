@@ -581,11 +581,11 @@ class _StatsRow extends StatelessWidget {
         children: [
           _StatItem(value: '4+', label: 'Services'),
           _Divider(),
-          _StatItem(value: '15+', label: 'Projects'),
+          _StatItem(value: '20+', label: 'Projects'),
           _Divider(),
           _StatItem(value: '99%', label: 'Satisfaction'),
           _Divider(),
-          _StatItem(value: '5 ★', label: 'Rating'),
+          _StatItem(value: '4.3 ★', label: 'Rating'),
         ],
       ),
     );

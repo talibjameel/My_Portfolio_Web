@@ -325,7 +325,7 @@ class _HeroTabletView extends StatelessWidget {
                         fit: BoxFit.scaleDown,
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          'Flutter Developer',
+                          'Full Stack Developer',
                           style: GoogleFonts.poppins(
                             fontSize: 16,
                             color: AppColors.white,
@@ -371,8 +371,8 @@ class _HeroTabletView extends StatelessWidget {
                   spacing: 20,
                   runSpacing: 15,
                   children: [
-                    _buildInsightItem('5', 'Years\nExperience'),
-                    _buildInsightItem('15+', 'Projects\nCompleted'),
+                    _buildInsightItem('4', 'Years\nExperience'),
+                    _buildInsightItem('20+', 'Projects\nCompleted'),
                     _buildInsightItem('10k', 'Content\nReached & views'),
                   ],
                 ),
@@ -464,7 +464,7 @@ class _HeroTabletView extends StatelessWidget {
                 fit: BoxFit.scaleDown,
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  'Flutter Developer',
+                  'Full Stack Developer',
                   style: GoogleFonts.poppins(
                     fontSize: 16,
                     color: AppColors.white,
@@ -576,7 +576,7 @@ class _HeroDesktopView extends StatelessWidget {
                           fit: BoxFit.scaleDown,
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            'Flutter Developer',
+                            'Full Stack Developer',
                             style: GoogleFonts.poppins(
                               fontSize: 16,
                               color: AppColors.white,
@@ -625,8 +625,8 @@ class _HeroDesktopView extends StatelessWidget {
                 spacing: 20,
                 runSpacing: 15,
                 children: [
-                  _buildInsightItem('5', 'Years\nExperience'),
-                  _buildInsightItem('15+', 'Projects\nCompleted'),
+                  _buildInsightItem('4', 'Years\nExperience'),
+                  _buildInsightItem('20+', 'Projects\nCompleted'),
                   _buildInsightItem('10k', 'Content\nReached & views'),
                 ],
               ),

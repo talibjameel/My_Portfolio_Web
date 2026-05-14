@@ -104,19 +104,23 @@ class AboutText extends StatelessWidget {
 
         // Expanded Description
         const Text(
-          "I am a passionate software engineer with over 5 years of experience turning ideas "
-              "into fully-functional digital products. My journey started with building small apps, "
-              "and today I specialize in creating scalable, high-performance systems and mobile "
-              "applications that users love.\n\n"
-              "💡 Flutter Developer: Expert in crafting seamless, cross-platform apps with Flutter & Dart. "
-              "I focus on clean, maintainable code that delivers real-world business value.\n\n"
-              "🎨 UI/UX Craftsmanship: Skilled in designing visually appealing, responsive interfaces "
-              "and integrating them with robust backends using Firebase and REST APIs.\n\n"
-              "⚡ Code Quality & Performance: I prioritize scalability, readability, and efficiency "
-              "to ensure apps are fast, reliable, and easy to maintain.\n\n"
-              "🚀 Agile Mindset: Experienced in agile workflows, pixel-perfect designs, and delivering "
-              "projects on time without compromising quality.\n\n"
-              "🌟 Goal: To create innovative digital experiences that delight users and make a tangible impact.",
+          "I’m a Full Stack Developer and Software Engineer with 4+ years of experience "
+              "building scalable mobile applications, web platforms, and digital products. "
+              "I specialize in Flutter, Dart, React.js, Node.js, Firebase, and modern backend systems, "
+              "delivering high-performance solutions across Android, iOS, Web, and Chrome Extensions.\n\n"
+
+              "My expertise includes cross-platform app development, REST API integration, "
+              "real-time systems, Firebase services, responsive UI/UX, and scalable application architecture. "
+              "I focus on writing clean, maintainable code while creating seamless user experiences "
+              "that combine performance, design, and business impact.\n\n"
+
+              "Over the years, I’ve worked on AI-powered applications, SaaS platforms, "
+              "social media apps, eCommerce systems, productivity tools, and real-time communication platforms. "
+              "I’ve also led development teams, managed project architecture, and delivered production-grade "
+              "applications for startups and international clients.\n\n"
+
+              "I’m passionate about transforming ideas into polished digital products through modern technologies, "
+              "scalable engineering practices, and user-focused design.",
           style: TextStyle(
             fontSize: 16,
             height: 1.7,
@@ -127,7 +131,7 @@ class AboutText extends StatelessWidget {
     );
   }
   void downloadResume() async {
-    const url = "https://drive.google.com/file/d/1JzZU8vbGUsKsoJXNS23deqtrrSykOsd2/view?usp=sharing";
+    const url = "https://drive.google.com/file/d/1iDNPc5pNSPkifousDX0phYCB9VJYH5JG/view?usp=sharing";
     final uri = Uri.parse(url);
 
     if (await canLaunchUrl(uri)) {
